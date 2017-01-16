@@ -25,6 +25,7 @@
 .bbs_table th {font-size: 13px; background-color: white; color: black; border-radius: 5px;}
 .bbs_table tr:nth-child(even) {background-color: #c4ecff;}
 .bbs_table tr td{border-left: 1px solid #888888; border-right: 1px solid #888888;}
+.ck_ad{background-color: white; color: #555555;}
 .detail_back{margin: 0 auto; text-align: right; width: 400px; color: green; text-decoration: none; background-color: white}
 .detail_table{margin: 0 auto; width: 400px;}
 .detail_table tr{height: 50px;}
