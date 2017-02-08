@@ -1,0 +1,7 @@
+CREATE TABLE Account(
+	id VARCHAR2(10) PRIMARY KEY, 
+	accountType VARCHAR2(10) NOT NULL, 
+	createDate VARCHAR2(10) NOT NULL, 
+	money VARCHAR2(10) NOT NULL, 
+	accountNo VARCHAR2(10) NOT NULL
+);
