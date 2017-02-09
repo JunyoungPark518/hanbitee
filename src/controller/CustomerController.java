@@ -1,7 +1,7 @@
 package controller;
 
 import javax.swing.JOptionPane;
-
+import java.util.*;
 import domain.AccountBean;
 import domain.MemberBean;
 import service.AccountService;
@@ -12,6 +12,7 @@ public class CustomerController {
 		MemberBean member = null;
 		AccountBean account = null;
 		AccountService service = new AccountServiceImpl(); // 선언 및 초기화를 항상 같이 한다.
+		ArrayList<AccountBean> list = (ArrayList<AccountBean>) service.list();
 		String temp = "";
 		while(true) {
 			switch(inputInt("1.회원등록\n"
@@ -41,9 +42,9 @@ public class CustomerController {
 				break;
 			case 2: // 통장개설
 				while(true) {
-					if(input("아이디를 입력하세요.").equals(member.getId())) {
+					if(input("아이디를 입력하세요.").equals(list.get(0).getId())) {
 						account.setAccountType(input("예금 타입은 어떻게 되나요?"));
-						account = service.create(member);
+						service.create(account);
 						show(account.toString());
 						break;
 					} else {
@@ -52,16 +53,21 @@ public class CustomerController {
 				}
 				break;
 			case 3: // 입금
-				if(input("아이디를 입력하세요.").equals(member.getId()) && account != null) {
-					show(service.deposit(inputInt("얼마를 입금하시겠습니까?")));
+				String deposit = input("아이디를 입력하세요.");
+				account = new AccountBean();
+				account.setId(deposit);
+				if(deposit.equals(list.get(0).getId()) && account != null) {
+					service.deposit(account, inputInt("얼마를 입금하시겠습니까?"));
 				} else {
 					notCase(account);
 				}
 				break;
 			case 4: // 출금
-				if(input("아이디를 입력하세요.").equals(member.getId()) && account != null) {
-					int withdraw = inputInt("얼마를 출금하시겠습니까?");
-					show(service.withdraw(withdraw));
+				String withdraw = input("아이디를 입력하세요.");
+				account = new AccountBean();
+				account.setId(withdraw);
+				if(withdraw.equals(list.get(0).getId()) && account != null) {
+					service.withdraw(account, inputInt("얼마를 출금하시겠습니까?"));
 				} else {
 					notCase(account);
 				}

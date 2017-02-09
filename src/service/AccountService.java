@@ -1,24 +1,22 @@
 package service;
 
 import domain.AccountBean;
-import domain.MemberBean;
+import java.util.*;
 
 public interface AccountService {
 	// create
-	public AccountBean create(MemberBean member);
+	public void create(AccountBean member);
 	// read one
-	public AccountBean findByAccountNo(String accountNo);
+	public AccountBean findByAccountNo(String id);
 	// read some
-	public AccountBean[] findByName(String name);
-	public int countByName(String name);
+	public List<AccountBean> findByName(String name);
 	// read all
-	public AccountBean[] list();
-	public int count();
+	public List<AccountBean> list();
 	// read special 
 	public boolean checkMoney(int money);
 	// update
-	public String deposit(int money);
-	public String withdraw(int money);
+	public void deposit(AccountBean member, int money);
+	public void withdraw(AccountBean member, int money);
 	// delete
-	public void drop(String accountNo);
+	public void drop(String id);
 }

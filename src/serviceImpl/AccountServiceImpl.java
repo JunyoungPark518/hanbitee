@@ -1,7 +1,6 @@
 package serviceImpl;
 
-import java.util.Calendar;
-
+import java.util.*;
 import constants.Account;
 import domain.AccountBean;
 import domain.MemberBean;
@@ -17,11 +16,11 @@ import util.RandomGen;
  */
 public class AccountServiceImpl implements AccountService {
 	// 사용하고 나서도 계속 유지되는 패턴 <- 연관관계(Association Relationships)
-	AccountBean[] list;  
+	Map<String, AccountBean> list;  
 	
 	// has a
 	public AccountServiceImpl() {
-		list = new AccountBean[10000];
+		list = new HashMap<String, AccountBean>();
 	}
 	
 	public AccountBean createAccount(String uid, String accountType) {
@@ -33,7 +32,7 @@ public class AccountServiceImpl implements AccountService {
 		account.setId(uid);
 		account.setAccountType(accountType);
 		account.setMoney("0");
-		list[0] = account;
+		list.put(account.getId(), account);
 		return account;
 	}
 	
@@ -42,65 +41,62 @@ public class AccountServiceImpl implements AccountService {
 		return money>=0;
 	}
 
-	@Override
-	public String deposit(int money) {
-		if(checkMoney(money)) {
-			list[0].setMoney(list[0].getMoney() + money);
-			return money + Account.DEPOSIT_SUCCESS;
-		} else {
-			return Account.DEPOSIT_FAIL;
-		}
-	}
 
 	@Override
-	public String withdraw(int money) {
-		if(checkMoney(Integer.parseInt(list[0].getMoney()) - money)) {
-			list[0].setMoney(String.valueOf(Integer.parseInt(list[0].getMoney()) - money));
-			return Account.WITHDRAW_SUCCESS;
-		} else {
-			return Account.WITHDRAW_FAIL;
-		}
-	}
-
-	@Override
-	public AccountBean create(MemberBean member) {
-		// TODO Auto-generated method stub
-		return null;
+	public void create(AccountBean member) {
+		list.put(member.getId(), member);
 	}
 
 	@Override
 	public AccountBean findByAccountNo(String accountNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AccountBean[] findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countByName(String name) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public AccountBean[] list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		AccountBean temp = new AccountBean();
+		for(AccountBean a : list()) {
+			if(accountNo.equals(a.getAccountNo())) {
+				temp = a;
+				break;
+			}
+		}
+		return temp;
 	}
 
 	@Override
 	public void drop(String accountNo) {
-		// TODO Auto-generated method stub
-		
+		list.remove(accountNo);
+	}
+
+	@Override
+	public List<AccountBean> findByName(String accountType) {
+		List<AccountBean> temp = new ArrayList<AccountBean>();
+		for(Map.Entry<String, AccountBean> a : list.entrySet()) {
+			if(accountType.equals(a.getValue().getAccountType())) {
+				temp.add(a.getValue());
+			}
+		}
+		return temp;
+	}
+
+	@Override
+	public List<AccountBean> list() {
+		List<AccountBean> temp = new ArrayList<AccountBean>();
+		for(Map.Entry<String, AccountBean> a : list.entrySet()) {
+			temp.add(a.getValue());
+		}
+		return temp;
+	}
+
+	@Override
+	public void deposit(AccountBean member, int money) {
+		if(checkMoney(money)) {
+			member.setMoney(String.valueOf(Integer.parseInt(member.getMoney()) + money));
+			list.put(member.getId(), member);
+		}
+	}
+
+	@Override
+	public void withdraw(AccountBean member, int money) {
+		if(checkMoney(Integer.parseInt(member.getMoney()) - money)) {
+			member.setMoney(String.valueOf(Integer.parseInt(member.getMoney()) - money));
+			list.put(member.getId(), member);
+		}
 	}
 }
