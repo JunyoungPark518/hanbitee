@@ -6,9 +6,10 @@ import service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
 	private static MemberServiceImpl instance = new MemberServiceImpl();
-	
-	public static MemberServiceImpl getInstance() {
-		return instance;
+	public static MemberServiceImpl getInstance() {	return instance; }
+	private MemberBean session; 
+	public MemberServiceImpl() {
+		session = new MemberBean();
 	}
 
 	@Override
@@ -17,13 +18,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberBean findById(String id) throws Exception {
-		return MemberDAOImpl.getInstance().selectById(id);
+	public MemberBean findById(MemberBean member) throws Exception {
+		session = MemberDAOImpl.getInstance().selectById(member);
+		return session;
 	}
 
 	@Override
 	public boolean login(MemberBean member) throws Exception {
-		return MemberDAOImpl.getInstance().login(member);
+		return MemberDAOImpl.getInstance().login(session);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import enums.Vender;
 import factory.DatabaseFactory;
 public class MemberDAOImpl implements MemberDAO {
 	public static MemberDAOImpl getInstance() {	return new MemberDAOImpl(); } // Singleton Pattern
-
+	
 	@Override
 	public void insert(MemberBean member) throws Exception {
 		DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
@@ -20,45 +20,46 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberBean selectById(String id) throws Exception {
-		MemberBean member = new MemberBean();
+	public MemberBean selectById(MemberBean member) throws Exception {
+		MemberBean temp = new MemberBean();
 		ResultSet rs = DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-				String.format("SELECT * FROM Member WHERE id='%s'", id));
-		if(rs.next()) {
-			member.setId(rs.getString("id"));
-			member.setSsn(rs.getString("ssn"));
-			member.setName(rs.getString("name"));
-			member.setPassword(rs.getString("password"));
-			member.setProfileImg(rs.getString("profileImg"));
-			member.setPhone(rs.getString("phone"));
-			member.setEmail(rs.getString("email"));
-			member.setRank(rs.getString("rank"));
+				String.format("SELECT * FROM Member WHERE id='%s'", member.getId()));
+		if(rs.next() && rs.getString("password").equals(member.getPassword())) {
+			temp.setId(rs.getString("id"));
+			temp.setSsn(rs.getString("ssn"));
+			temp.setName(rs.getString("name"));
+			temp.setPassword(rs.getString("password"));
+			temp.setProfileImg(rs.getString("profileImg"));
+			temp.setPhone(rs.getString("phone"));
+			temp.setEmail(rs.getString("email"));
+			temp.setRank(rs.getString("rank"));
+		} else {
+			temp.setId(member.getId());
+			temp.setPassword(rs.getString("password"));
 		}
-		return member;
+		return temp;
 	}
 
 	@Override
 	public boolean login(MemberBean member) throws Exception {
-		boolean bool = false;
-		if(member.getPassword().equals(DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-						String.format("SELECT password FROM Member WHERE id='%s' and password='%s'", member.getId(), member.getPassword())
-						).getObject("password"))) {
-			bool = true;
+		MemberBean temp = selectById(member);
+		if(temp.getPassword().equals(member.getPassword())) {
+			return true;
 		}
-		return bool;
+		return false;
 	}
 
 	@Override
 	public void update(MemberBean member) throws Exception {
-		MemberBean cmp = selectById(member.getId());
-		if(cmp!=null) {
+		MemberBean temp = selectById(member);
+		if(temp!=null) {
 			DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
 				String.format("UPDATE Member SET email='%s', name='%s', password='%s', phone='%s', profileimg='%s' WHERE id='%s'", 
-						!member.getEmail().equals(cmp.getEmail()) && !member.getEmail().equals(null) ? member.getEmail() : cmp.getEmail(), 
-						!member.getName().equals(cmp.getName()) && !member.getName().equals(null) ? member.getName() : cmp.getName(), 
-						!member.getName().equals(cmp.getName()) && !member.getName().equals(null) ? member.getPassword() : cmp.getPassword(), 
-						!member.getPhone().equals(cmp.getPhone()) && !member.getPhone().equals(null) ? member.getPhone() : cmp.getPhone(), 
-						!member.getProfileImg().equals(cmp.getProfileImg()) && !member.getProfileImg().equals(null) ? member.getProfileImg() : cmp.getProfileImg(), 
+						!member.getEmail().equals(temp.getEmail()) && !member.getEmail().equals(null) ? member.getEmail() : temp.getEmail(), 
+						!member.getName().equals(temp.getName()) && !member.getName().equals(null) ? member.getName() : temp.getName(), 
+						!member.getName().equals(temp.getName()) && !member.getName().equals(null) ? member.getPassword() : temp.getPassword(), 
+						!member.getPhone().equals(temp.getPhone()) && !member.getPhone().equals(null) ? member.getPhone() : temp.getPhone(), 
+						!member.getProfileImg().equals(temp.getProfileImg()) && !member.getProfileImg().equals(null) ? member.getProfileImg() : temp.getProfileImg(), 
 						member.getId())
 				);
 		}

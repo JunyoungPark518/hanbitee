@@ -11,7 +11,7 @@ public interface MemberDAO {
 	/*
 	 * READ: SELECT
 	 */
-	public MemberBean selectById(String id) throws Exception;
+	public MemberBean selectById(MemberBean member) throws Exception;
 	public boolean login(MemberBean member) throws Exception;
 	/*
 	 * UPDATE: UPDATE

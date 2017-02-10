@@ -15,7 +15,7 @@ public class DAOTest {
 		String[] temp = null;
 		try {
 			while(true) {
-				switch (input("1.가입/2.조회/3.수정/4.삭제/5.로그인/0.종료")) {
+				switch (input("1.가입/2.로그인/3.수정/4.삭제/0.종료")) {
 				case "1":
 					member = new MemberBean();
 					temp = input("id/ssn/name/password/phone/email/profimg").split("/");
@@ -31,8 +31,13 @@ public class DAOTest {
 					break;
 				case "2":
 					member = new MemberBean();
-					member = service.findById(input("id입력"));
-					JOptionPane.showMessageDialog(null, member.toString());
+					member.setId(input("id"));
+					member.setPassword(input("password"));
+					if(service.login(member)) {
+						JOptionPane.showMessageDialog(null, "로그인성공");
+					} else {
+						JOptionPane.showMessageDialog(null, "로그인실패");
+					}
 					break;
 				case "3":
 					member = new MemberBean();
@@ -49,22 +54,12 @@ public class DAOTest {
 					member.setId(input("삭제할 id입력"));
 					service.remove(member);
 					break;
-				case "5":
-					member = new MemberBean();
-					member.setId(input("ID"));
-					member.setPassword(input("Password"));
-					if(service.login(member)) {
-						System.out.println("로그인 성공");
-					} else {
-						System.out.println("로그인 실패");
-					}
-					break;
 				case "0":
 					return;
 				}
 			}
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
