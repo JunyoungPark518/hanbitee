@@ -13,3 +13,5 @@ INSERT INTO Member(id, ssn, name, password, profileImg, phone, email, rank)
 VALUES ('babungv', '900518-1', '박준용', '1', 'default', '010-2206-8900', 'babungv@gmail.com', 'C');
 
 SELECT * FROM Member;
+SELECT password FROM Member WHERE id='admin';
+UPDATE Member SET password='3', name='parkjy' WHERE id='admin';

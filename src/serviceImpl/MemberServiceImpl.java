@@ -1,37 +1,39 @@
 package serviceImpl;
 
+import daoImpl.MemberDAOImpl;
 import domain.MemberBean;
 import service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
-	@Override
-	public void join(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	private static MemberServiceImpl instance = new MemberServiceImpl();
+	
+	public static MemberServiceImpl getInstance() {
+		return instance;
 	}
 
 	@Override
-	public MemberBean findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public void join(MemberBean member) throws Exception {
+		MemberDAOImpl.getInstance().insert(member);
 	}
 
 	@Override
-	public boolean login(MemberBean member) {
-		// TODO Auto-generated method stub
-		return false;
+	public MemberBean findById(String id) throws Exception {
+		return MemberDAOImpl.getInstance().selectById(id);
 	}
 
 	@Override
-	public void change(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	public boolean login(MemberBean member) throws Exception {
+		return MemberDAOImpl.getInstance().login(member);
 	}
 
 	@Override
-	public void remove(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	public void change(MemberBean member) throws Exception {
+		MemberDAOImpl.getInstance().update(member);
+	}
+
+	@Override
+	public void remove(MemberBean member) throws Exception {
+		MemberDAOImpl.getInstance().delete(member);		
 	}
 	
 	public String calcGender(String ssn) {

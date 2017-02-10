@@ -6,18 +6,18 @@ public interface MemberService {
 	/*
 	 * CREATE: INSERT
 	 */
-	public void join(MemberBean member);
+	public void join(MemberBean member) throws Exception;
 	/*
 	 * READ: SELECT
 	 */
-	public MemberBean findById(String id);
-	public boolean login(MemberBean member);
+	public MemberBean findById(String id) throws Exception;
+	public boolean login(MemberBean member) throws Exception;
 	/*
 	 * UPDATE: UPDATE
 	 */
-	public void change(MemberBean member);
+	public void change(MemberBean member) throws Exception;
 	/*
 	 * DELETE: DELETE
 	 */
-	public void remove(MemberBean member);
+	public void remove(MemberBean member) throws Exception;
 }
