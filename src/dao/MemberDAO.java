@@ -7,7 +7,7 @@ public interface MemberDAO {
 	/*
 	 * CREATE: INSERT
 	 */
-	public void insert(MemberBean member) throws Exception;
+	public int insert(MemberBean member) throws Exception;
 	/*
 	 * READ: SELECT
 	 */
@@ -16,9 +16,9 @@ public interface MemberDAO {
 	/*
 	 * UPDATE: UPDATE
 	 */
-	public void update(MemberBean member) throws Exception;
+	public int update(MemberBean member) throws Exception;
 	/*
 	 * DELETE: DELETE
 	 */
-	public void delete(MemberBean member) throws Exception;
+	public int delete(MemberBean member) throws Exception;
 }

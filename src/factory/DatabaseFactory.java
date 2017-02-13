@@ -2,10 +2,17 @@ package factory;
 
 import constants.Database;
 import domain.DatabaseBean;
-import enums.Vender;
+import enums.Vendor;
 
+/**
+@FILE  : DatabaseFactory.java
+@DATE  : 2017. 2. 13.
+@AUTHOR: J.John Park
+@STORY
+		팩토리 패턴은 옵션에 따라 다른 객체가 나오게 하는 방법
+ */
 public class DatabaseFactory {
-	public static DatabaseBean createDatabase(Vender vendor, String username, String password) {
+	public static DatabaseBean createDatabase(Vendor vendor, String username, String password) {
 		String driver = "", url = "";
 		switch(vendor) {
 			case DB2 :

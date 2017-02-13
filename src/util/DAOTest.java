@@ -27,7 +27,11 @@ public class DAOTest {
 					member.setEmail(temp[5]);
 					member.setProfileImg(temp[6]);
 					member.setRank("C");
-					service.join(member);
+					if(service.join(member)==1) {
+						JOptionPane.showMessageDialog(null, "가입이 완료되었습니다");
+					} else {
+						JOptionPane.showMessageDialog(null, "가입에 실패하였습니다");
+					}
 					break;
 				case "2":
 					member = new MemberBean();
@@ -42,17 +46,24 @@ public class DAOTest {
 				case "3":
 					member = new MemberBean();
 					member.setId(input("id입력"));
-					member.setName(input("new name"));
 					member.setPassword(input("new pw"));
 					member.setEmail(input("new email"));
 					member.setPhone(input("new phone"));
 					member.setProfileImg(input("new profile image"));
-					service.change(member);
+					if(service.change(member)==1) {
+						JOptionPane.showMessageDialog(null, "변경 성공");
+					} else {
+						JOptionPane.showMessageDialog(null, "변경 실패");
+					}
 					break;
 				case "4":
 					member = new MemberBean();
 					member.setId(input("삭제할 id입력"));
-					service.remove(member);
+					if(service.remove(member)==1) {
+						JOptionPane.showMessageDialog(null, "ID 삭제 성공");
+					} else {
+						JOptionPane.showMessageDialog(null, "ID 삭제 실패");
+					}
 					break;
 				case "0":
 					return;

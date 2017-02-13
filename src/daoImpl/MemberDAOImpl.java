@@ -4,14 +4,14 @@ import java.sql.*;
 import constants.Database;
 import dao.MemberDAO;
 import domain.MemberBean;
-import enums.Vender;
+import enums.Vendor;
 import factory.DatabaseFactory;
 public class MemberDAOImpl implements MemberDAO {
-	public static MemberDAOImpl getInstance() {	return new MemberDAOImpl(); } // Singleton Pattern
+	public static MemberDAOImpl getInstance() {	return new MemberDAOImpl(); } // Singleton Pattern, parameter가 없다(Overloading)
 	
 	@Override
-	public void insert(MemberBean member) throws Exception {
-		DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
+	public int insert(MemberBean member) throws Exception {
+		return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
 				String.format("INSERT INTO Member(id, ssn, name, password, profileImg, phone, email, rank)"
 						+ "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", 
 						member.getId(), member.getSsn(), member.getName(), member.getPassword(),
@@ -22,7 +22,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberBean selectById(MemberBean member) throws Exception {
 		MemberBean temp = new MemberBean();
-		ResultSet rs = DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
+		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
 				String.format("SELECT * FROM Member WHERE id='%s'", member.getId()));
 		if(rs.next() && rs.getString("password").equals(member.getPassword())) {
 			temp.setId(rs.getString("id"));
@@ -50,24 +50,24 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void update(MemberBean member) throws Exception {
+	public int update(MemberBean member) throws Exception {
 		MemberBean temp = selectById(member);
 		if(temp!=null) {
-			DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-				String.format("UPDATE Member SET email='%s', name='%s', password='%s', phone='%s', profileimg='%s' WHERE id='%s'", 
-						!member.getEmail().equals(temp.getEmail()) && !member.getEmail().equals(null) ? member.getEmail() : temp.getEmail(), 
-						!member.getName().equals(temp.getName()) && !member.getName().equals(null) ? member.getName() : temp.getName(), 
-						!member.getName().equals(temp.getName()) && !member.getName().equals(null) ? member.getPassword() : temp.getPassword(), 
-						!member.getPhone().equals(temp.getPhone()) && !member.getPhone().equals(null) ? member.getPhone() : temp.getPhone(), 
-						!member.getProfileImg().equals(temp.getProfileImg()) && !member.getProfileImg().equals(null) ? member.getProfileImg() : temp.getProfileImg(), 
+			return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
+				String.format("UPDATE Member SET email='%s', password='%s', phone='%s', profileimg='%s' WHERE id='%s'", 
+						!member.getEmail().equals(temp.getEmail()) && member.getEmail()!=null ? member.getEmail() : temp.getEmail(), 
+						!member.getPassword().equals(temp.getPassword()) && member.getPassword()!=null ? member.getPassword() : temp.getPassword(), 
+						!member.getPhone().equals(temp.getPhone()) && member.getPhone()!=null ? member.getPhone() : temp.getPhone(), 
+						!member.getProfileImg().equals(temp.getProfileImg()) && member.getProfileImg()!=null ? member.getProfileImg() : temp.getProfileImg(), 
 						member.getId())
 				);
 		}
+		return 0;
 	}
 
 	@Override
-	public void delete(MemberBean member) throws Exception {
-		DatabaseFactory.createDatabase(Vender.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
+	public int delete(MemberBean member) throws Exception {
+		return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
 				String.format("DELETE FROM Member WHERE id='%s'", member.getId()));
 	}
 
