@@ -6,13 +6,13 @@ import domain.ArticleBean;
 
 public interface BoardService {
 	// CREATE
-	public void addArticle(ArticleBean param);
+	public int addArticle(ArticleBean param) throws Exception;
 	// READ: SELECT
-	public ArticleBean findOne(ArticleBean param);
-	public List<ArticleBean> findSome(ArticleBean param);
-	public List<ArticleBean> list();
+	public ArticleBean findOne(ArticleBean param) throws Exception;
+	public List<ArticleBean> findSome(ArticleBean param) throws Exception;
+	public List<ArticleBean> list() throws Exception;
 	// UPDATE
-	public void update(ArticleBean param);
+	public int update(ArticleBean param) throws Exception;
 	// DELETE
-	public void delete(ArticleBean param);
+	public int delete(ArticleBean param) throws Exception;
 }

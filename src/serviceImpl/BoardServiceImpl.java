@@ -1,75 +1,68 @@
 package serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import dao.BoardDAO;
+import daoImpl.BoardDAOImpl;
 import domain.ArticleBean;
 import service.BoardService;
 
 public class BoardServiceImpl implements BoardService {
+	private BoardDAO dao;
+	private static BoardServiceImpl instance = new BoardServiceImpl();
+	public static BoardServiceImpl getInstance() { return instance; }
 	private List<ArticleBean> list;
 	Iterator<ArticleBean> it;
 	
 	public BoardServiceImpl() {
-		list = new ArrayList<ArticleBean>();
+		try {
+			list = BoardDAOImpl.getInstance().selectAll();
+		} catch (Exception e) {
+			
+		}
 		it = list.iterator();
 	}
 
 	@Override
-	public void addArticle(ArticleBean param) {
-		list.add(param);
+	public int addArticle(ArticleBean param) throws Exception{
+		return dao.insert(param);
 	}
 
 	@Override
-	public ArticleBean findOne(ArticleBean param) {
-		ArticleBean article = param;
-		for(ArticleBean a : list) {
-			if(param.getSeq().equals(a.getSeq())) {
-				article = a;
-				break;
-			}
-		}
-		return article;
+	public ArticleBean findOne(ArticleBean param) throws Exception {
+		return BoardDAOImpl.getInstance().selectBySeq(param);
 	}
 
 	@Override
-	public List<ArticleBean> findSome(ArticleBean param) {
-		List<ArticleBean> listv = new ArrayList<ArticleBean>();
-		for(ArticleBean a : list) {
-			if(param.getId().equals(a.getId())) {
-				listv.add(a);
-			}
-		}
-		return listv;
+	public List<ArticleBean> findSome(ArticleBean param) throws Exception {
+		return BoardDAOImpl.getInstance().selectByWord(param);
 	}
 
 	@Override
-	public List<ArticleBean> list() {
-		return list;
+	public List<ArticleBean> list() throws Exception {
+		return BoardDAOImpl.getInstance().selectAll();
 	}
 
 	@Override
-	public void update(ArticleBean param) {
-		Date d = new Date();
+	public int update(ArticleBean param) throws Exception {
 		for (ArticleBean a : list) {
 			if(param.getSeq().equals(a.getSeq())) {
 				param.setTitle(!param.getTitle().equals(a.getTitle()) ? param.getTitle() : a.getTitle());
 				param.setContent(!param.getTitle().equals(a.getTitle()) ? param.getTitle() : a.getTitle());
 				param.setId(a.getId());
-				param.setRegdate(d.toString());
+				param.setRegdate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()).toString());
 				list.set(list.indexOf(a), param);
 			}
 		}
+		return dao.update(param);
 	}
 
 	@Override
-	public void delete(ArticleBean param) {
-		while(it.hasNext()) {
-			if(it.next().getSeq().equals(param.getSeq()) && it.next()!=null) {
-				it.remove();
-			}
-		}
+	public int delete(ArticleBean param) throws Exception {
+		return dao.delete(param);
 	}
 }

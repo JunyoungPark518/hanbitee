@@ -23,7 +23,7 @@ public class Index {
 			case EXIT : return;
 			case MEMBER : new CustomerController().start(); break;
 			case ADMIN : new AdminController().start(); break;
-			case BOARD : new BoardController().start(); break;
+//			case BOARD : new BoardController().start(); break;
 		}
 	}
 }

@@ -35,7 +35,7 @@ import serviceImpl.BoardServiceImpl;
 	// 삭제가 끝나면 해당글이 없다고 출력함
  */
 public class BoardController {
-	public void start() {
+	public void start() throws Exception {
 		BoardService service = new BoardServiceImpl();
 		List<ArticleBean> list = service.list();
 		ArticleBean a = new ArticleBean();
