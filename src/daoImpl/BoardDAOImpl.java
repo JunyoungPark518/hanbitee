@@ -27,12 +27,14 @@ public class BoardDAOImpl implements BoardDAO {
 		ArticleBean temp = new ArticleBean();
 		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
 				String.format("SELECT * FROM Article WHERE art_seq='%d'", Integer.parseInt(article.getSeq())));
-				temp.setSeq(rs.getString("art_seq"));
-				temp.setId(rs.getString("id"));
-				temp.setTitle(rs.getString("title"));
-				temp.setContent(rs.getString("content"));
-				temp.setRegdate(rs.getString("regdate"));
-				temp.setReadCount(rs.getString("read_count"));
+		if(rs.next()) {
+			temp.setSeq(rs.getString("art_seq"));
+			temp.setId(rs.getString("id"));
+			temp.setTitle(rs.getString("title"));
+			temp.setContent(rs.getString("content"));
+			temp.setRegdate(rs.getString("regdate"));
+			temp.setReadCount(rs.getString("read_count"));
+		}
 		return temp;
 	}
 

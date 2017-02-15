@@ -8,7 +8,7 @@ import controller.BoardController;
 import controller.CustomerController;
 
 public class Index {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		First[] first = {First.EXIT, First.MEMBER, First.ADMIN, First.BOARD};
 		First select = (First)JOptionPane.showInputDialog(
 				null, // frame
@@ -23,7 +23,7 @@ public class Index {
 			case EXIT : return;
 			case MEMBER : new CustomerController().start(); break;
 			case ADMIN : new AdminController().start(); break;
-//			case BOARD : new BoardController().start(); break;
+			case BOARD : new BoardController().start(); break;
 		}
 	}
 }

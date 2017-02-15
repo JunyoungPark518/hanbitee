@@ -2,18 +2,19 @@
 <%@ page import="service.BoardService" %>
 <%@ page import="serviceImpl.BoardServiceImpl" %>
 <%@ page import="domain.ArticleBean" %>
-<%@ page import="java.util.*" %>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../../css/hanbit.css" />
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>Template page</title>
 </head>
 <body>
 <%
-	BoardService service = new BoardServiceImpl();
-	List<ArticleBean> list = service.list();
+	BoardService service = BoardServiceImpl.getInstance();
+	ArticleBean find = new ArticleBean();
+	find.setSeq(request.getQueryString().split("=")[1]);
+	ArticleBean temp = service.findOne(find);
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
 		<div id="header" class="wtac" style="height: 100px;">
@@ -28,7 +29,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="index_gnbtab">
+			<div style="background-color: #51b6e1;">
 			<ul class="index_gnb">
 				<li>
 					<div class="index_gnb_dropdown">
@@ -111,27 +112,25 @@
 		<div style="height: 150px;"></div>
 		<div id="container">
 		<!-- 여기까지 코드 복사&붙여넣기 -->
-		<div style="margin-top: 50px;">
-			<table class="bbs_table">
+		<div>
+			<table class="bbs_one">
 				<tr>
-					<th style="width: 50px;"><span>No</span></th>
-					<th style="width: 200px;"><span>제목</span></th>
-					<th style="width: 100px;"><span>작성자</span></th>
-					<th style="width: 100px;"><span>작성일</span></th>
-					<th style="width: 50px;"><span>조회수</span></th>
+					<td><%= temp.getTitle() %></td>
+					<td style="width:400px"><b style="margin-left: 1px solid black;">자유 게시판</b></td>
+					<td style="width:80px"><%= temp.getRegdate() %></td>
 				</tr>
-				<% for(ArticleBean bean : list) { %>
 				<tr>
-					<td><span><%= bean.getSeq() %></span></td>
-					<td><span><a href="article.jsp?seq=<%= bean.getSeq() %>"><%= bean.getTitle() %></a></span></td>
-					<td><span><%= bean.getId() %></span></td>
-					<td><span><%= bean.getRegdate() %></span></td>
-					<td><span><%= bean.getReadCount() %></span></td>
+					<td colspan="2"><%= temp.getId() %></td>
+					<td>주소부분</td>
 				</tr>
-				<% } %>
+				<tr>
+					<td colspan="3"><span style="margin-top:10px; margin-bottom:10px"><%= temp.getContent() %></span></td>
+				</tr>
+				<tr>
+					<td colspan="3">조회수 <%= temp.getReadCount() %></td>
+				</tr>
 			</table>
 		</div>
-		
 		<!-- 내용물 공간 -->
 		<!-- 여기까지 코드 복사&붙여넣기 -->
 		</div>

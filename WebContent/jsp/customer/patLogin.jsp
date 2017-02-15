@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="service.MemberService" %>
 <%@ page import="serviceImpl.MemberServiceImpl" %>
+<%@ page import="service.MemberService" %>
 <%@ page import="domain.MemberBean" %>
 <!doctype html>
 <html lang="en">
@@ -11,17 +11,10 @@
 </head>
 <body>
 <% 
-	MemberService service = new MemberServiceImpl();
+	MemberService service = MemberServiceImpl.getInstance();
 	MemberBean member = new MemberBean();
 	member.setId(request.getParameter("id"));
 	member.setPassword(request.getParameter("pw"));
-	String name = "";
-	if(service.login(member)) {
-		member = service.findById(member);
-		name = member.getName();
-	} else {
-		name = "로그인에 실패하였습니다.";
-	}
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
 		<div id="header" class="wtac" style="height: 100px;">
@@ -127,8 +120,15 @@
 						<form action="patLogin.jsp">
 							<table>
 								<tr>
-									<td><%= name %> 님, <a href="">내정보</a>
+									<td>
+									<% if(service.login(member)) { 
+										member = service.findById(member);
+									%>
+									<%= member.getName() %> 님 환영합니다. <br /><a href="">내정보</a>
 									<a href="patLoginForm.jsp"><input type="button" value="로그아웃"/></a>
+									<% } else { %>
+									<h3>회원정보가 일치하지 않습니다. <a href="patLoginForm.jsp">뒤로가기</a></h3>
+									<% } %>
 									</td>
 								</tr>
 							</table>
@@ -137,6 +137,7 @@
 						</td>
 						<td style="width: 500px; text-align: right;">
 							<div class="tooltip"><a href="#">병원소개</a><span class="tooltiptext">구현되지 않은 기능입니다.</span></div><br/>
+							<div class="tooltip"><a href="../bbs/articleList.jsp">게시판</a><span class="tooltiptext">게시판으로 이동합니다.</span></div><br/>
 						</td>
 					</tr>
 				</table>
