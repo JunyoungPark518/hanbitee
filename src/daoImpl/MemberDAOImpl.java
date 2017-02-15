@@ -41,15 +41,6 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public boolean login(MemberBean member) throws Exception {
-		MemberBean temp = selectById(member);
-		if(temp.getPassword().equals(member.getPassword())) {
-			return true;
-		}
-		return false;
-	}
-
-	@Override
 	public int update(MemberBean member) throws Exception {
 		MemberBean temp = selectById(member);
 		if(temp!=null) {

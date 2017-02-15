@@ -14,22 +14,6 @@ public class BoardServiceImpl implements BoardService {
 	
 	public BoardServiceImpl() {
 		list = new ArrayList<ArticleBean>();
-		String[][] arr1 = {
-				{"1","James","Hello","2016-2-6 17:30"},
-				{"2","Tom","Hi","2016-8-6 17:30"},
-				{"3","Alex","Good Morning","2016-11-20 17:30"},
-				{"4","Betty","I'm happy","2016-12-25 17:30"},
-				{"5","John","Thank you","2017-2-6 17:30"}
-			};
-		
-		for(int i=0; i<arr1.length; i++) {
-			ArticleBean a = new ArticleBean();
-			a.setSeq(arr1[i][0]);
-			a.setId(arr1[i][1]);
-			a.setTitle(arr1[i][2]);
-			a.setRegdate(arr1[i][3]);
-			list.add(a);
-		}
 		it = list.iterator();
 	}
 

@@ -12,7 +12,6 @@ public interface MemberDAO {
 	 * READ: SELECT
 	 */
 	public MemberBean selectById(MemberBean member) throws Exception;
-	public boolean login(MemberBean member) throws Exception;
 	/*
 	 * UPDATE: UPDATE
 	 */

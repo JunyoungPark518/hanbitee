@@ -12,6 +12,7 @@ public interface MemberService {
 	 */
 	public MemberBean findById(MemberBean member) throws Exception;
 	public boolean login(MemberBean member) throws Exception;
+	public boolean logout(MemberBean member) throws Exception;
 	/*
 	 * UPDATE: UPDATE
 	 */
