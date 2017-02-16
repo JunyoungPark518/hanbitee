@@ -18,12 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	Iterator<ArticleBean> it;
 	
 	public BoardServiceImpl() {
-		try {
-			list = BoardDAOImpl.getInstance().selectAll();
-		} catch (Exception e) {
-			
-		}
+		try { list = BoardDAOImpl.getInstance().selectAll(); } catch (Exception e) {}
 		it = list.iterator();
+		dao = BoardDAOImpl.getInstance();
 	}
 
 	@Override

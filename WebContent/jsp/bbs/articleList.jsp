@@ -14,6 +14,24 @@
 <%
 	BoardService service = new BoardServiceImpl();
 	List<ArticleBean> list = service.list();
+	String qs = request.getQueryString();
+	String finding = "", keyword = "";
+	if(!qs.equals("")) {
+		finding = qs.split("=")[1].split("&")[0];
+		keyword = qs.split("=")[2];
+		ArticleBean article = new ArticleBean(); 
+		if(finding.equals("title")) {
+			article.setTitle(keyword);
+		} else if(finding.equals("userid")) {
+			article.setId(keyword);
+		} else if(finding.equals("content")) {
+			article.setContent(keyword);
+		} else if(finding.equals("regdate")) {
+			article.setRegdate(keyword);
+		}
+		list = service.findSome(article);
+	} 
+	
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
 		<div id="header" class="wtac" style="height: 100px;">
@@ -130,6 +148,24 @@
 				</tr>
 				<% } %>
 			</table>
+		</div>
+		<div style="margin-top:30px; text-align:right">
+			<form action="">
+				<table style="width:80%; margin: 0 auto">
+				<tr>
+					<td style="text-align:right; width:400px">
+						<select name="finding">
+							<option value="userid">작성자</option>
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="regdate">날짜</option>
+						</select>
+					<input type="text" name="search"/>
+					<input type="submit" value="검색"/>
+					</td>
+				</tr>
+				</table>
+			</form>
 		</div>
 		
 		<!-- 내용물 공간 -->

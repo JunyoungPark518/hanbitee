@@ -131,6 +131,15 @@
 				</tr>
 			</table>
 		</div>
+		<div style="margin-top:30px; text-align:right">
+			<table style="width:60%; margin: 0 auto">
+				<tr>
+					<td style="text-align:right; width:400px">
+						<a href="articleList.jsp"><input type="button" value="뒤로가기"/></a>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<!-- 내용물 공간 -->
 		<!-- 여기까지 코드 복사&붙여넣기 -->
 		</div>
