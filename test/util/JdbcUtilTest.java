@@ -1,0 +1,15 @@
+package util;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class JdbcUtilTest {
+
+	@Test
+	public void testJdbc() {
+		JdbcTest test = new JdbcTest();
+		assertTrue(test.jdbc().equals("박준용"));
+	}
+
+}
