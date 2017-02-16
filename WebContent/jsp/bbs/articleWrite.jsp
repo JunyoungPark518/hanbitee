@@ -1,36 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="service.BoardService" %>
 <%@ page import="serviceImpl.BoardServiceImpl" %>
+<%@ page import="service.MemberService" %>
+<%@ page import="serviceImpl.MemberServiceImpl" %>
 <%@ page import="domain.ArticleBean" %>
-<%@ page import="java.util.*" %>
-<!doctype html>
+<%@ page import="domain.MemberBean" %>
+<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="../../css/hanbit.css" />
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>게시글</title>
 </head>
 <body>
 <%
-	BoardService service = new BoardServiceImpl();
-	List<ArticleBean> list = service.list();
-	String qs = request.getQueryString();
-	String finding = "", keyword = "";
-	if(!qs.equals("")) {
-		finding = qs.split("=")[1].split("&")[0];
-		keyword = qs.split("=")[2];
-		ArticleBean article = new ArticleBean(); 
-		if(finding.equals("title")) {
-			article.setTitle(keyword);
-		} else if(finding.equals("userid")) {
-			article.setId(keyword);
-		} else if(finding.equals("content")) {
-			article.setContent(keyword);
-		} else if(finding.equals("regdate")) {
-			article.setRegdate(keyword);
-		}
-		list = service.findSome(article);
-	} 
+	BoardService service = BoardServiceImpl.getInstance();
+	MemberBean member = MemberServiceImpl.getSession();
+	ArticleBean find = new ArticleBean();
 	
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
@@ -46,7 +32,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="index_gnbtab">
+			<div style="background-color: #51b6e1;">
 			<ul class="index_gnb">
 				<li>
 					<div class="index_gnb_dropdown">
@@ -129,58 +115,36 @@
 		<div style="height: 150px;"></div>
 		<div id="container">
 		<!-- 여기까지 코드 복사&붙여넣기 -->
-		<div style="margin-top: 50px;">
-			<table class="bbs_table">
+		<div>
+			<table class="bbs_one">
 				<tr>
-					<th style="width: 50px;"><span>No</span></th>
-					<th style="width: 200px;"><span>제목</span></th>
-					<th style="width: 100px;"><span>작성자</span></th>
-					<th style="width: 100px;"><span>작성일</span></th>
-					<th style="width: 50px;"><span>조회수</span></th>
+				<td style="width:40px">제목</td>
+					<td><input type="text" name="title" style="width:160px"></td>
+					<td style="width:200px"><b style="margin-left: 1px solid black;">자유 게시판</b></td>
 				</tr>
-				<%  /* int pageno = Integer.parseInt(request.getQueryString().split("=")[1]); */
-					for(int i=0; i<list.size(); i++) { 
-					ArticleBean bean = list.get(i);
-				%>
 				<tr>
-					<td><span><%= bean.getSeq() %></span></td>
-					<td><span><a href="article.jsp?seq=<%= bean.getSeq() %>"><%= bean.getTitle() %></a></span></td>
-					<td><span><%= bean.getId() %></span></td>
-					<td><span><%= bean.getRegdate() %></span></td>
-					<td><span><%= bean.getReadCount() %></span></td>
+					<td colspan="2">작성자: <%= member.getId() %></td>
+					<td>주소부분</td>
 				</tr>
-				<% } %>
 				<tr>
-					<td colspan="5"> <% for(int j=0; j<list.size()/10; j++) { %>
-					<a href=""><span style="font-size: 15px"><%= j+1 %></span></a>&nbsp;&nbsp;&nbsp;
-					<%  } %>
-					</td>
+					<td colspan="3"><span style="margin-top:10px; margin-bottom:10px">
+					<input type="text" name="content" style="height: 300px; width: 600px"/>
+					</span></td>
 				</tr>
 			</table>
 		</div>
 		<div style="margin-top:30px; text-align:right">
-			<form action="">
-				<table style="width:800px; margin: 0 auto">
+			<table style="width:60%; margin: 0 auto">
 				<tr>
-					<td style="text-align:left; width:100px">
-					<a href="articleWrite.jsp"><input type="button" value="글 작성"/>
-					</a>
-					</td>
-					<td style="text-align:right; width:300px">
-						<select name="finding">
-							<option value="userid">작성자</option>
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-							<option value="regdate">날짜</option>
-						</select>
-					<input type="text" name="search"/>
-					<input type="submit" value="검색"/>
+				<td><a href=""><input  type="submit" name="change" value="등록하기"/></a>
+				<a href=""><input type="button" name="delete" value="다시 쓰기"/></a>
+				</td>
+					<td style="text-align:right; width:400px">
+						<a href="articleList.jsp?"><input type="button" value="뒤로가기"/></a>
 					</td>
 				</tr>
-				</table>
-			</form>
+			</table>
 		</div>
-		
 		<!-- 내용물 공간 -->
 		<!-- 여기까지 코드 복사&붙여넣기 -->
 		</div>

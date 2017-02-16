@@ -9,8 +9,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO dao;
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	public static MemberServiceImpl getInstance() {	return instance; }
-	private MemberBean session;
-	public MemberBean getSession() { return session; }
+	private static MemberBean session;
+	public static MemberBean getSession() { return session; }
 	
 	public MemberServiceImpl() {
 		dao = MemberDAOImpl.getInstance();

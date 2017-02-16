@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../../css/hanbit.css" />
 <meta charset="UTF-8">
-<title>Template page</title>
+<title>게시글</title>
 </head>
 <body>
 <%
@@ -124,18 +124,32 @@
 					<td>주소부분</td>
 				</tr>
 				<tr>
-					<td colspan="3"><span style="margin-top:10px; margin-bottom:10px"><%= temp.getContent() %></span></td>
+					<td colspan="3" style="height: 150px"><span style="margin-top:10px; margin-bottom:10px"><%= temp.getContent() %></span></td>
 				</tr>
 				<tr>
 					<td colspan="3">조회수 <%= temp.getReadCount() %></td>
 				</tr>
 			</table>
 		</div>
+		<div style="margin-top:30px; text-align:center">
+			<form action="">
+			<table style="width:60%; margin: 0 auto">
+				<tr>
+					<td><input type="text" name="reply" style="width:500px; height:100px"/>
+					
+					<input type="submit" value="댓글등록" style="width:100px; height:100px"/>
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
 		<div style="margin-top:30px; text-align:right">
 			<table style="width:60%; margin: 0 auto">
 				<tr>
+				<td><a href="articleChange.jsp?seq=<%= temp.getSeq() %>"><input type="button" value="게시글 수정"/></a>
+				<input type="button" value="게시글 삭제"/></td>
 					<td style="text-align:right; width:400px">
-						<a href="articleList.jsp"><input type="button" value="뒤로가기"/></a>
+						<a href="articleList.jsp?"><input type="button" value="뒤로가기"/></a>
 					</td>
 				</tr>
 			</table>

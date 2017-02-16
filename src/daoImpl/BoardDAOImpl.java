@@ -44,8 +44,8 @@ public class BoardDAOImpl implements BoardDAO {
 		ResultSet rs = null;
 		if(article.getId()!=null) {
 			rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-					String.format("SELECT * FROM Article WHERE id='%s'", 
-							article.getId()));
+					String.format("SELECT * FROM Article WHERE id like '%s'", 
+							"%" + article.getId() + "%"));
 		} else if(article.getTitle()!=null) {
 			rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
 					String.format("SELECT * FROM Article WHERE title like '%s'", 
