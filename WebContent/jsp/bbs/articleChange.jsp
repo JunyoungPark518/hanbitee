@@ -137,7 +137,7 @@
 				<a href=""><input type="button" name="delete" value="게시글 삭제"/></a>
 				</td>
 					<td style="text-align:right; width:400px">
-						<a href="articleList.jsp?page=1"><input type="button" value="뒤로가기"/></a>
+						<a href="articleList.jsp?"><input type="button" value="뒤로가기"/></a>
 					</td>
 				</tr>
 			</table>

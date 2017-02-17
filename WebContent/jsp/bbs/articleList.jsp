@@ -16,9 +16,10 @@
 	List<ArticleBean> list = service.list();
 	String qs = request.getQueryString();
 	String finding = "", keyword = "";
-	/* if(!qs.split("&")[1].equals("")) {
-		finding = qs.split("=")[2].split("&")[0];
-		keyword = qs.split("=")[3];
+	ArticleBean article = new ArticleBean();
+	 if(!qs.equals("")) {
+		finding = qs.split("=")[1].split("&")[0];
+		keyword = qs.split("=")[2];
 		if(finding.equals("title")) {
 			article.setTitle(keyword);
 		} else if(finding.equals("userid")) {
@@ -29,7 +30,7 @@
 			article.setRegdate(keyword);
 		}
 		list = service.findSome(article);
-	} */
+	} 
 	
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
@@ -138,15 +139,9 @@
 					<th style="width: 100px;"><span>작성일</span></th>
 					<th style="width: 50px;"><span>조회수</span></th>
 				</tr>
-				<%  String spageno = request.getQueryString().split("=")[1]; 
-					int pageno = Integer.parseInt(spageno);
-					int cardinality = 5;
-					int count = service.count();
-					int pageCount = (count%cardinality==0) ? count/cardinality : count%cardinality;
-					int blockNo = 0;
-					int blockStart = 1;
-					int blockEnd = 5;
-					for(int i=pageno*cardinality-1; i>pageno*cardinality-cardinality-1; i--) { 
+				<%  
+					int rowCount = 5, card = service.count();
+					for(int i=0; i<rowCount; i++) { 
 					ArticleBean bean = list.get(i);
 				%>
 				<tr>
@@ -158,19 +153,12 @@
 				</tr>
 				<% } %>
 				<tr>
-					<td colspan="5"> <% for(int j=0; j<list.size()/cardinality; j++) { %>
-					<span style="font-size: 15px"><a href="articleList.jsp?page=<%= j+1 %>"><%= j+1 %></a></span>&nbsp;&nbsp;&nbsp;
+					<td colspan="5"> 
+					<% 
+					int pageCount = (card%rowCount==0) ? card/rowCount : card/rowCount+1;
+					for(int j=0; j<pageCount; j++) { %>
+					<span style="font-size: 15px"><a href="articleList.jsp?"><%= j+1 %></a></span>&nbsp;&nbsp;&nbsp;
 					<%  } %>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="5">
-						<div> <%= "◀" %><% int i = 0; 
-						for(i=blockStart; i<=blockEnd; i++){ %>
-								<%= i %>
-								<% } %>
-								<%= "▶" %>
-						</div>
 					</td>
 				</tr>
 			</table>

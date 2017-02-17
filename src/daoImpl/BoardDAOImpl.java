@@ -111,5 +111,14 @@ public class BoardDAOImpl implements BoardDAO {
 				String.format("DELETE FROM Article WHERE art_seq='%d'", Integer.parseInt(article.getSeq())));
 	}
 
+	@Override
+	public int count() throws Exception {
+		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery("SELECT COUNT(*) AS COUNT FROM Article");
+		if(rs.next()) {
+			return Integer.parseInt(rs.getString("COUNT"));
+		}
+		return 0;
+	}
+
 
 }

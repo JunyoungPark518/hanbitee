@@ -137,7 +137,7 @@
 						</td>
 						<td style="width: 500px; text-align: right;">
 							<div class="tooltip"><a href="#">병원소개</a><span class="tooltiptext">구현되지 않은 기능입니다.</span></div><br/>
-							<div class="tooltip"><a href="../bbs/articleList.jsp?page=1">게시판</a><span class="tooltiptext">게시판으로 이동합니다.</span></div><br/>
+							<div class="tooltip"><a href="../bbs/articleList.jsp?">게시판</a><span class="tooltiptext">게시판으로 이동합니다.</span></div><br/>
 						</td>
 					</tr>
 				</table>

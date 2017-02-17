@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="../../css/hanbit.css" />
+<link rel="stylesheet" type="text/css" href="<%= application.getContextPath() %>/css/hanbit.css" />
 <meta charset="UTF-8">
 <title>한빛 병원</title>
 </head>
