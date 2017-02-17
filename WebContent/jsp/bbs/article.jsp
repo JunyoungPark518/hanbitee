@@ -149,7 +149,7 @@
 				<td><a href="articleChange.jsp?seq=<%= temp.getSeq() %>"><input type="button" value="게시글 수정"/></a>
 				<input type="button" value="게시글 삭제"/></td>
 					<td style="text-align:right; width:400px">
-						<a href="articleList.jsp?"><input type="button" value="뒤로가기"/></a>
+						<a href="articleList.jsp?page=1"><input type="button" value="뒤로가기"/></a>
 					</td>
 				</tr>
 			</table>

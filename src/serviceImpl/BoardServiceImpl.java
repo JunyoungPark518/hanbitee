@@ -47,8 +47,15 @@ public class BoardServiceImpl implements BoardService {
 	public int update(ArticleBean param) throws Exception {
 		for (ArticleBean a : list) {
 			if(param.getSeq().equals(a.getSeq())) {
+				if(param.getTitle()==null) {
+					param.setTitle("blank");
+				}
 				param.setTitle(!param.getTitle().equals(a.getTitle()) ? param.getTitle() : a.getTitle());
-				param.setContent(!param.getTitle().equals(a.getTitle()) ? param.getTitle() : a.getTitle());
+				
+				if(param.getContent()==null){
+					param.setContent("blank");
+				}
+				param.setContent(!param.getContent().equals(a.getContent()) ? param.getContent() : a.getContent());
 				param.setId(a.getId());
 				param.setRegdate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()).toString());
 				list.set(list.indexOf(a), param);
@@ -60,5 +67,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int delete(ArticleBean param) throws Exception {
 		return dao.delete(param);
+	}
+
+	@Override
+	public int count() throws Exception {
+		
+		return 0;
 	}
 }

@@ -17,7 +17,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return  DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
 				String.format(
 						"INSERT INTO Article(art_seq, id, title, content, regdate, read_count) "
-						+ "VALUES (art_seq, '%s','%s','%s','%s','%s')", 
+						+ "VALUES (art_seq.nextval, '%s','%s','%s','%s','%s')", 
 						article.getId(), article.getTitle(), article.getContent(), article.getRegdate(), article.getReadCount()
 				));
 	}
@@ -95,11 +95,11 @@ public class BoardDAOImpl implements BoardDAO {
 		ArticleBean temp = selectBySeq(article);
 		if(temp!=null) {
 			return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
-					String.format("UPDATE Article SET title='%s', content='%s', regdate='%s' WHERE art_seq=%d", 
+					String.format("UPDATE Article SET title='%s', content='%s', regdate='%s' WHERE art_seq='%d'", 
 							!article.getTitle().equals(temp.getTitle()) && article.getTitle()!=null ? article.getTitle() : temp.getTitle(), 
 							!article.getContent().equals(temp.getContent()) && article.getContent()!=null ? article.getContent() : temp.getContent(), 
 							!article.getRegdate().equals(temp.getRegdate()) && article.getRegdate()!=null ? article.getRegdate() : temp.getRegdate(), 
-							article.getSeq())
+							Integer.parseInt(article.getSeq()))
 					);
 		}
 		return 0;
@@ -108,7 +108,7 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int delete(ArticleBean article) throws Exception {
 		return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
-				String.format("DELETE FROM Article WHERE art_seq=%d", article.getSeq()));
+				String.format("DELETE FROM Article WHERE art_seq='%d'", Integer.parseInt(article.getSeq())));
 	}
 
 
