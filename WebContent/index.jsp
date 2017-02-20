@@ -107,32 +107,13 @@
 				<table style="margin: 0 auto;">
 					<tr>
 						<td>
-						<div>
-						<table class="login_table">
-							<tr>
-								<td><input type="text" name="id" placeholder="아이디" class="login_input" style="border-bottom: 1px solid #cccccc;" /></td>
-								<td rowspan="2" class="login_btn"><input type="button" name="login" value="로그인" class="login_input" style="width: 60px; height: 40px;" /></td>
-							</tr>
-							<tr>
-								<td><input type="text" name="pw" placeholder="비밀번호"	class="login_input" /></td>
-							</tr>
-						</table>
-						</div>
-						</td>
-						<td style="width: 500px; text-align: right;">
-							<div class="tooltip"><a href="#">병원소개</a><span class="tooltiptext">구현되지 않은 기능입니다.</span></div><br/>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="saveid" value="save">
-							<span class="login_span">로그인 상태 유지</span>&nbsp;&nbsp;&nbsp; 
-							<a class="login_a" href="html/common/register.html">회원가입</a>&nbsp; 
-							<a class="login_a" href="<%= application.getContextPath() %>/login.do">로그인</a>&nbsp; 
-							<a class="login_a" href="html/common/findidpw.html">ID/PW 찾기</a></td>
+							<a class="login_main" href="<%= application.getContextPath() %>/patient/registerForm.do">회원가입</a>&nbsp; 
+							<a class="login_main" href="<%= application.getContextPath() %>/patient/loginForm.do">로그인</a>&nbsp; 
+							<a class="login_main" href="html/common/findidpw.html">ID/PW 찾기</a></td>
 						<td></td>
 					</tr>
 					<tr>
-						<td style="text-align: right;"><a class="login_a" href="html/admin/check_admin.html">관리자 아이디로 로그인</a></td>
+						<td style="text-align: right;"><a class="login_main" href="<%= application.getContextPath() %>/admin/loginForm.do">관리자 아이디로 로그인</a></td>
 						<td></td>
 					</tr>
 				</table>
@@ -144,7 +125,7 @@
 					</tr>
 					<tr style="height: 720px;">
 						<td>
-						<div><iframe width="1080px" height="720px" src="https://www.youtube.com/embed/hTiJzzUWKWA?autoplay=1" ></iframe></div>
+						<div><!-- <iframe width="1080px" height="720px" src="https://www.youtube.com/embed/hTiJzzUWKWA?autoplay=1" ></iframe> --></div>
 						</td>
 					</tr>
 					<tr style="border-top: 2px solid gray;">

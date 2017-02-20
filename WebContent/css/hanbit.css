@@ -42,6 +42,7 @@
 .login_input {background-color: white; border: none; width: 120px; height: 20px;}
 .login_input:hover {background-color: #d2d2d2;}
 .login_a {color: #cccccc; font-size: 11px;}
+.login_main {color: #aaaaaa; font-size: 15px;}
 .login_span {color:#cccccc; font-size:11px;}
 .login_btn {border: 1px solid #cccccc;}
 .login_btn:hover {background-color: #d2d2d2;}
