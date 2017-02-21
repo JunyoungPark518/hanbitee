@@ -7,18 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import util.PathRefiner;
+import util.Separator;
 
-@WebServlet({"/patient/loginForm.do","/patient/registerForm.do"})
+@WebServlet("/patient.do")
 public class PatientController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		System.out.println("------------- 서블릿 진입 성공 -------------");
-		request.getRequestDispatcher(PathRefiner.getFullPath(request.getServletPath())).forward(request, response);
+		request.getRequestDispatcher(Separator.getFullPath(request.getServletPath())).forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -107,13 +107,14 @@
 				<table style="margin: 0 auto;">
 					<tr>
 						<td>
-							<a class="login_main" href="<%= application.getContextPath() %>/patient/registerForm.do">회원가입</a>&nbsp; 
-							<a class="login_main" href="<%= application.getContextPath() %>/patient/loginForm.do">로그인</a>&nbsp; 
-							<a class="login_main" href="html/common/findidpw.html">ID/PW 찾기</a></td>
+							<a class="login_main" href="<%= application.getContextPath() %>/patient.do?action=move&page=registerForm">회원가입</a>&nbsp; 
+							<a class="login_main" href="<%= application.getContextPath() %>/patient.do?action=move&page=loginForm">로그인</a>&nbsp; 
+							<a class="login_main" href="<%= application.getContextPath() %>/board.do?action=move&page=articleList">게시판으로 이동</a>&nbsp; 
+							<a class="login_main" href="<%= application.getContextPath() %>/common.do?action=move&page=findId">ID/PW 찾기</a></td>
 						<td></td>
 					</tr>
 					<tr>
-						<td style="text-align: right;"><a class="login_main" href="<%= application.getContextPath() %>/admin/loginForm.do">관리자 아이디로 로그인</a></td>
+						<td style="text-align: right;"><a class="login_main" href="<%= application.getContextPath() %>/admin.do?action=move&page=main">관리자 아이디로 로그인</a></td>
 						<td></td>
 					</tr>
 				</table>
