@@ -14,15 +14,15 @@ public class Command implements CommandHandler {
 		this.directory = directory;
 		this.action = action;
 		this.page = page;
+		this.setView();
 	}
 	
 	@Override
-	public String process() {
-		String temp = "";
-		return temp;
+	public Command process() {
+		return null;
 	}
 	
-	public void setView(String view) {
-		this.view = "/WEB-INF" + this.directory + "/" + this.page + ".jsp";
+	public void setView() {
+		this.view = "/WEB-INF/jsp/" + this.directory + "/" + this.page + ".jsp";
 	}
 }

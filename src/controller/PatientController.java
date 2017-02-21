@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.DispatcherServlet;
 import util.Separator;
 
 @WebServlet("/patient.do")
@@ -16,12 +17,18 @@ public class PatientController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		System.out.println("------------- 서블릿 진입 성공 -------------");
-		request.getRequestDispatcher(Separator.getFullPath(request.getServletPath())).forward(request, response);
+		Separator.init(request, response);
+		switch (Separator.command.getAction()) {
+		case "move":
+			DispatcherServlet.send(request, response, Separator.command);
+			break;
+		default:
+			break;
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

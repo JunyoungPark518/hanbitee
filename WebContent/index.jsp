@@ -119,50 +119,6 @@
 					</tr>
 				</table>
 			</div>
-			<div style="margin-top: 50px;">
-				<table class="index_menutb">
-					<tr style="border-bottom: 2px solid gray; border-top: 2px solid gray;">
-						<td><span>Hanbit Hospital Contents</span></td>
-					</tr>
-					<tr style="height: 720px;">
-						<td>
-						<div><!-- <iframe width="1080px" height="720px" src="https://www.youtube.com/embed/hTiJzzUWKWA?autoplay=1" ></iframe> --></div>
-						</td>
-					</tr>
-					<tr style="border-top: 2px solid gray;">
-						<td>
-						<div class="index_mtb_contents">
-							<ul>
-								<li><a href=""><img src="images/common/index_icon01.png" alt="인터넷확인" /></a></li>
-								<li><a href=""><img src="images/common/index_icon02.png" alt="예약확인" /></a></li>
-								<li><a href=""><img src="images/common/index_icon03.png" alt="위임장/동의서" /></a></li>
-								<li><a href=""><img src="images/common/index_icon04.png" alt="진료안내" /></a></li>
-								<li><a href=""><img src="images/common/index_icon05.png" alt="의학백과사전" /></a></li>
-								<li><a href=""><img src="images/common/index_icon06.png" alt="홈페이지도우미" /></a></li>
-								<li><a href=""><img src="images/common/index_icon07.png" alt="병원로고" /></a></li>
-								<li><a href=""><img src="images/common/index_icon08.png" alt="찾아오시는길" /></a></li>
-							</ul>
-						</div>
-						</td>
-					</tr>
-					<tr style="border-bottom: 2px solid gray;">
-						<td>
-						<div class="index_mtb_contents">
-							<ul>
-								<li><a href=""><img src="images/common/index_icon09.png" alt="인터넷확인" /></a></li>
-								<li><a href=""><img src="images/common/index_icon10.png" alt="예약확인" /></a></li>
-								<li><a href=""><img src="images/common/index_icon11.png" alt="위임장/동의서" /></a></li>
-								<li><a href=""><img src="images/common/index_icon12.png" alt="진료안내" /></a></li>
-								<li><a href=""><img src="images/common/index_icon13.png" alt="의학백과사전" /></a></li>
-								<li><a href=""><img src="images/common/index_icon14.png" alt="홈페이지도우미" /></a></li>
-								<li><a href=""><img src="images/common/index_icon15.png" alt="병원로고" /></a></li>
-								<li><a href=""><img src="images/common/index_icon16.png" alt="찾아오시는길" /></a></li>
-							</ul>
-						</div>
-						</td>
-					</tr>
-				</table>
-			</div>
 			<div style="margin-top: 50px;"></div>
 			<div style="width: 100%; margin-bottom: 100px;">
 				<table class="index_notice">

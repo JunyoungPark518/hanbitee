@@ -1,5 +1,7 @@
 package handler;
 
+import domain.Command;
+
 public interface CommandHandler {
-	public String process();
+	public Command process();
 }
