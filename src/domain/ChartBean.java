@@ -8,5 +8,5 @@ import lombok.*;
 public class ChartBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Getter @Setter
-	private String charID, treatID, docID, nurID, patID, chartContent;
+	private String chartID, treatID, docID, nurID, patID, chartContent;
 }
