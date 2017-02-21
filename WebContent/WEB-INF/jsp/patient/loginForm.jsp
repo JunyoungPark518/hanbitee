@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="context" value="<%= application.getContextPath() %>" />
+<c:set var="img" value="<%= application.getContextPath() %>/images" />
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,8 +18,8 @@
 		<div id="header" class="wtac" style="height: 100px;">
 			<table style="margin: 0 auto; width: 1000px;">
 				<tr>
-					<td style="width: 230px;"><a href="index.html"><img
-							src="<%= application.getContextPath() %>/images/common/logo.png" alt="병원 로고" width="200px"
+					<td style="width: 230px;"><a href="${context}/home.do?action=move&page=main"><img
+							src="${img}/images/common/logo.png" alt="병원 로고" width="200px"
 							height="75px" /></a></td>
 					<td class="index_main"><span class="index_mainlogo"><b>한빛병원</b></span></td>
 					<td><input class="index_search" type="search" name="search"
@@ -152,14 +159,14 @@
 						<td>
 						<div class="index_mtb_contents">
 							<ul>
-								<li><a href=""><img src="../../images/common/index_icon01.png" alt="인터넷확인" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon02.png" alt="예약확인" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon03.png" alt="위임장/동의서" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon04.png" alt="진료안내" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon05.png" alt="의학백과사전" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon06.png" alt="홈페이지도우미" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon07.png" alt="병원로고" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon08.png" alt="찾아오시는길" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon01.png" alt="인터넷확인" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon02.png" alt="예약확인" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon03.png" alt="위임장/동의서" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon04.png" alt="진료안내" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon05.png" alt="의학백과사전" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon06.png" alt="홈페이지도우미" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon07.png" alt="병원로고" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon08.png" alt="찾아오시는길" /></a></li>
 							</ul>
 						</div>
 						</td>
@@ -168,14 +175,14 @@
 						<td>
 						<div class="index_mtb_contents">
 							<ul>
-								<li><a href=""><img src="../../images/common/index_icon09.png" alt="인터넷확인" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon10.png" alt="예약확인" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon11.png" alt="위임장/동의서" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon12.png" alt="진료안내" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon13.png" alt="의학백과사전" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon14.png" alt="홈페이지도우미" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon15.png" alt="병원로고" /></a></li>
-								<li><a href=""><img src="../../images/common/index_icon16.png" alt="찾아오시는길" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon09.png" alt="인터넷확인" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon10.png" alt="예약확인" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon11.png" alt="위임장/동의서" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon12.png" alt="진료안내" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon13.png" alt="의학백과사전" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon14.png" alt="홈페이지도우미" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon15.png" alt="병원로고" /></a></li>
+								<li><a href=""><img src="${img}/images/common/index_icon16.png" alt="찾아오시는길" /></a></li>
 							</ul>
 						</div>
 						</td>
@@ -207,11 +214,11 @@
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3" style="margin-right: 5px;"><a href=""><img src="../../images/common/bbs_btn01.png" alt="" /></a></td>
-												<td colspan="3"><a href=""><img src="../../images/common/bbs_btn02.png" alt="" /></a></td>
+												<td colspan="3" style="margin-right: 5px;"><a href=""><img src="${img}/images/common/bbs_btn01.png" alt="" /></a></td>
+												<td colspan="3"><a href=""><img src="${img}/images/common/bbs_btn02.png" alt="" /></a></td>
 											</tr>
 											<tr style="margin-top: 5px;">
-												<td colspan="6"><a href=""><img src="../../images/common/bbs_btn03.png" alt="" /></a></td>
+												<td colspan="6"><a href=""><img src="${img}/images/common/bbs_btn03.png" alt="" /></a></td>
 											</tr>
 										</table>
 									</div>

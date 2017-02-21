@@ -23,6 +23,6 @@ public class Command implements CommandHandler {
 	}
 	
 	public void setView() {
-		this.view = "/WEB-INF/jsp/" + this.directory + "/" + this.page + ".jsp";
+		this.view = (this.directory.equals("home")) ? "/WEB-INF/jsp/common/" + this.page + ".jsp" :"/WEB-INF/jsp/" + this.directory + "/" + this.page + ".jsp";
 	}
 }

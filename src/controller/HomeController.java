@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import util.DispatcherServlet;
 import util.Separator;
 
-@WebServlet("/patient.do")
-public class PatientController extends HttpServlet {
+@WebServlet("/home.do")
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("------------- 서블릿 진입 성공 -------------");
 		Separator.init(request, response);
 		switch (Separator.command.getAction()) {
@@ -26,10 +25,4 @@ public class PatientController extends HttpServlet {
 			break;
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
-
 }
