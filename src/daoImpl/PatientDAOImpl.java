@@ -8,7 +8,7 @@ import enums.Vendor;
 import factory.DatabaseFactory;
 public class PatientDAOImpl implements PatientDAO {
 	public static PatientDAOImpl getInstance() {	return new PatientDAOImpl(); } // Singleton Pattern, parameter가 없다(Overloading)
-	
+	final String prop = "pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job";
 	@Override
 	public int insert(PatientBean member) throws Exception {
 		return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
@@ -20,20 +20,22 @@ public class PatientDAOImpl implements PatientDAO {
 	public PatientBean selectById(PatientBean member) throws Exception {
 		PatientBean temp = new PatientBean();
 		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-				String.format("SELECT * FROM Patient %s",""));
-//		if(rs.next() && rs.getString("password").equals(member.getPassword())) {
-//			temp.setId(rs.getString("id"));
-//			temp.setSsn(rs.getString("ssn"));
-//			temp.setName(rs.getString("name"));
-//			temp.setPassword(rs.getString("password"));
-//			temp.setProfileImg(rs.getString("profileImg"));
-//			temp.setPhone(rs.getString("phone"));
-//			temp.setEmail(rs.getString("email"));
-//			temp.setRank(rs.getString("rank"));
-//		} else {
-//			temp.setId(member.getId());
-//			temp.setPassword(rs.getString("password"));
-//		}
+				String.format("SELECT %s FROM Patient WHERE pat_id='%s'",prop, member.getPatID()));
+		if(rs.next()) {
+			temp.setPatID(rs.getString("pat_id"));
+			temp.setNurID(rs.getString("nur_id"));
+			temp.setDocID(rs.getString("doc_id"));
+			temp.setPatPass(rs.getString("pat_pass"));
+			temp.setPatName(rs.getString("pat_name"));
+			temp.setPatGen(rs.getString("pat_gen"));
+			temp.setPatJumin(rs.getString("pat_jumin"));
+			temp.setPatAddr(rs.getString("pat_addr"));
+			temp.setPatPhone(rs.getString("pat_phone"));
+			temp.setPatEmail(rs.getString("pat_email"));
+			temp.setPatJob(rs.getString("pat_job"));
+		} else {
+			temp.setPatID("FAIL");
+		}
 		return temp;
 	}
 

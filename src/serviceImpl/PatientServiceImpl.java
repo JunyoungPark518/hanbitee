@@ -8,13 +8,10 @@ import service.PatientService;
 public class PatientServiceImpl implements PatientService {
 	private PatientDAO dao;
 	private static PatientServiceImpl instance = new PatientServiceImpl();
-	public static PatientServiceImpl getInstance() {	return instance; }
-	private static PatientBean session;
-	public static PatientBean getSession() { return session; }
+	public static PatientServiceImpl getInstance() { return instance; }
 	
 	public PatientServiceImpl() {
 		dao = PatientDAOImpl.getInstance();
-		session = new PatientBean();
 	}
 	
 	@Override
@@ -28,18 +25,12 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public boolean login(PatientBean member) throws Exception {
-		PatientBean temp = findById(member);
-//		if(member.getPassword().equals(temp.getPassword())) {
-//			session = temp;
-//			return true;
-//		}
-		return false;
+	public PatientBean login(PatientBean member) throws Exception {
+		return findById(member);
 	}
 
 	@Override
 	public boolean logout(PatientBean member) throws Exception {
-		session = null;
 		return true;
 	}
 	

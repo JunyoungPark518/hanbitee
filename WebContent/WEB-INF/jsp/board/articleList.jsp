@@ -17,7 +17,7 @@
 	String qs = request.getQueryString();
 	String finding = "", keyword = "";
 	ArticleBean article = new ArticleBean();
-	 if(!qs.equals("")) {
+	 /* if(!qs.equals("")) {
 		finding = qs.split("=")[1].split("&")[0];
 		keyword = qs.split("=")[2];
 		if(finding.equals("title")) {
@@ -30,7 +30,7 @@
 			article.setRegdate(keyword);
 		}
 		list = service.findSome(article);
-	} 
+	}  */
 	
 %>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">

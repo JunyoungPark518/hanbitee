@@ -22,7 +22,7 @@ public class BoardServiceTest {
 		assertTrue(service.addArticle(bean)==1);
 	}
 
-	@Test @Ignore
+	@Test
 	public void testFindOne() throws Exception {
 		ArticleBean bean = new ArticleBean();
 		bean.setSeq("1");
@@ -43,7 +43,7 @@ public class BoardServiceTest {
 		assertTrue(!list.equals(null));
 	}
 
-	@Test 
+	@Test @Ignore
 	public void testUpdate() throws Exception {
 		ArticleBean bean = new ArticleBean();
 		bean.setSeq("1");

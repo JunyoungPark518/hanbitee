@@ -7,18 +7,19 @@
 			<tr>
 				<td>
 				<div>
-				<form action="${context}/patient.do" method="get">
+				<form action="${context}/patient.do" method="post">
 				<table class="login_table">
 					<tr>
 						<td><input type="text" name="id" placeholder="아이디" class="login_input" style="border-bottom: 1px solid #cccccc;" /></td>
 						<td rowspan="2" class="login_btn">
-						<input type="submit" name="action" value="login" class="login_input" style="width: 60px; height: 40px;" /></td>
+						<input type="submit" value="로그인" class="login_input" style="width: 60px; height: 40px;" /></td>
 					</tr>
 					<tr>
 						<td><input type="password" name="pw" placeholder="비밀번호"	class="login_input" /></td>
 					</tr>
 				</table>
 				<input type="hidden" name="page" value="main"/>
+				<input type="hidden" name="action" value="login"/>
 				</form>
 				</div>
 				</td>

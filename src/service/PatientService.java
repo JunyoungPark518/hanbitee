@@ -11,7 +11,7 @@ public interface PatientService {
 	 * READ: SELECT
 	 */
 	public PatientBean findById(PatientBean member) throws Exception;
-	public boolean login(PatientBean member) throws Exception;
+	public PatientBean login(PatientBean member) throws Exception;
 	public boolean logout(PatientBean member) throws Exception;
 	/*
 	 * UPDATE: UPDATE

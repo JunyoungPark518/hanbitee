@@ -27,19 +27,19 @@ public class PatientController extends HttpServlet {
 		System.out.println("------------- 서블릿 진입 성공 -------------");
 		Separator.init(request, response);
 		service = PatientServiceImpl.getInstance();
-		PatientBean bean = new PatientBean();
 		switch (Separator.command.getAction()) {
 		case "move":
 			DispatcherServlet.send(request, response);
 			break;
 		case "login":
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			bean.setPatID(id);
-			bean.setPatPass(pw);
+			PatientBean bean = new PatientBean();
+			bean.setPatID(request.getParameter("id"));
+			bean.setPatPass(request.getParameter("pw"));
 			try {
-				if(!service.login(bean)) {
+				PatientBean temp = service.login(bean);
+				if(temp.getPatID().equals("FAIL") || !bean.getPatPass().equals(temp.getPatPass())) {
 					Separator.command.setPage("loginForm");
+					Separator.command.setView();
 				}
 				DispatcherServlet.send(request, response);
 			} catch (Exception e) {	}
