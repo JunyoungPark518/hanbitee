@@ -7,14 +7,17 @@ import domain.Command;
 import factory.CommandFactory;
 
 public class Separator {
-	public static CommandFactory factory = new CommandFactory();
 	public static Command command;
 	public static void init(HttpServletRequest request, HttpServletResponse response) { 
 		String path = request.getServletPath();
 		String directory = path.split("/")[1].split("\\.")[0];
 		String action = request.getParameter("action");
 		String page = request.getParameter("page");
-		command = factory.createCommand(directory, action, page);
+		System.out.println("Separator PATH:   " + path);
+		System.out.println("Separator DIR:   " + directory);
+		System.out.println("Separator ACTION:   " + action);
+		System.out.println("Separator PAGE:   " + page);
+		command = CommandFactory.createCommand(directory, action, page);
 	}
 	
 	public static String[] getAll(String path) {

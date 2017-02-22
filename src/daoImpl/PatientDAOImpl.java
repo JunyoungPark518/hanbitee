@@ -20,7 +20,7 @@ public class PatientDAOImpl implements PatientDAO {
 	public PatientBean selectById(PatientBean member) throws Exception {
 		PatientBean temp = new PatientBean();
 		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-				String.format(null));
+				String.format("SELECT * FROM Patient %s",""));
 //		if(rs.next() && rs.getString("password").equals(member.getPassword())) {
 //			temp.setId(rs.getString("id"));
 //			temp.setSsn(rs.getString("ssn"));

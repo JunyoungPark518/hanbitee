@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<c:set var="context" value="<%= application.getContextPath() %>" />
-<c:set var="img" value="<%= application.getContextPath() %>/images" />
-		<div id="container" class="width100">
+		<div id="container" class="con_setting" style="position: relative; top:200px">
 		<!-- 여기까지 코드 복사&붙여넣기 -->
 			<div>
 				<table style="margin: 0 auto;">
 					<tr>
 						<td>
-							<a class="login_main" href="${context}/patient.do?action=move&page=registerForm">회원가입</a>&nbsp; 
-							<a class="login_main" href="${context}/patient.do?action=move&page=loginForm">로그인</a>&nbsp; 
+							<a class="login_main" href="${context}/patient.do?action=move&page=registerForm">고객 회원가입</a>&nbsp; 
+							<a class="login_main" href="${context}/patient.do?action=move&page=loginForm">고객:로그인</a>&nbsp; 
+							<a class="login_main" href="${context}/patient.do?action=move&page=loginForm">스탭:로그인</a>&nbsp; 
+							<a class="login_main" href="${context}/admin.do?action=move&page=main">관리자 아이디로 로그인</a>
 							<a class="login_main" href="${context}/board.do?action=move&page=articleList">게시판으로 이동</a>&nbsp; 
 							<a class="login_main" href="${context}/util.do?action=move&page=findId">ID/PW 찾기</a>
-							<a class="login_main" href="${context}/admin.do?action=move&page=main">관리자 아이디로 로그인</a>
 						</td>
 					</tr>
 				</table>
@@ -46,11 +40,11 @@
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3" style="margin-right: 5px;"><a href=""><img src="images/common/bbs_btn01.png" alt="" /></a></td>
-												<td colspan="3"><a href=""><img src="images/common/bbs_btn02.png" alt="" /></a></td>
+												<td colspan="3" style="margin-right: 5px;"><a href=""><img src="${img}/common/bbs_btn01.png" alt="" /></a></td>
+												<td colspan="3"><a href=""><img src="${img}/common/bbs_btn02.png" alt="" /></a></td>
 											</tr>
 											<tr style="margin-top: 5px;">
-												<td colspan="6"><a href=""><img src="images/common/bbs_btn03.png" alt="" /></a></td>
+												<td colspan="6"><a href=""><img src="${img}/common/bbs_btn03.png" alt="" /></a></td>
 											</tr>
 										</table>
 									</div>
