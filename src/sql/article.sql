@@ -20,19 +20,7 @@ CREATE TABLE Article (
     FOREIGN KEY(pat_id) REFERENCES Patient(pat_id)
 );
 -- INSERT 
-INSERT INTO Article(art_seq, 
-pat_id, 
-title, 
-content,
-regdate, 
-read_count) 
-VALUES
-(art_seq.nextval, 
-'pahn',
-'Hi',
-'Hello my friends',
-'2017-02-15 10:00:00',
-'3');
+INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES (art_seq.nextval, 'pahn',   'Hi','Hello my friends','2017-02-15 10:00:00','3');
 INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES (art_seq.nextval, 'pkim',   'Second','MY SECOND ARTICLE','2017-02-15 12:00:00','5');
 INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES (art_seq.nextval, 'plee',   'Third','MY THIRD ARTICLE','2017-02-16 01:00:00','7');
 INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES (art_seq.nextval, 'pchoi',  'Forth','MY FOUTH ARTICLE','2017-02-17 02:00:00','4');

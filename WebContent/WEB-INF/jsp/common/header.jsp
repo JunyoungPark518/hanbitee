@@ -10,5 +10,4 @@
 			</td>
 		</tr>
 	</table>
-	<jsp:include page="gnb.jsp"/>
 </div>

@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import domain.DoctorBean;
 import domain.PatientBean;
 import service.PatientService;
 import serviceImpl.PatientServiceImpl;
@@ -18,21 +20,24 @@ public class PatientController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PatientService service;
 	
-	public PatientController() {
-		service = new PatientServiceImpl();
-	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		System.out.println("------------- 서블릿 진입 성공 -------------");
+		HttpSession session = request.getSession();
+		PatientBean bean = new PatientBean();
 		Separator.init(request, response);
 		service = PatientServiceImpl.getInstance();
 		switch (Separator.command.getAction()) {
 		case "move":
 			DispatcherServlet.send(request, response);
 			break;
+		case "mypage":
+			String[] birth = service.getBirth(service.getSession());
+			request.setAttribute("birth", birth[0]);
+			request.setAttribute("age", birth[1]);
+			request.setAttribute("gender", birth[2]);
+			DispatcherServlet.send(request, response);
+			break;
 		case "login":
-			PatientBean bean = new PatientBean();
 			bean.setPatID(request.getParameter("id"));
 			bean.setPatPass(request.getParameter("pw"));
 			try {
@@ -40,6 +45,10 @@ public class PatientController extends HttpServlet {
 				if(temp.getPatID().equals("FAIL") || !bean.getPatPass().equals(temp.getPatPass())) {
 					Separator.command.setPage("loginForm");
 					Separator.command.setView();
+				} else {
+//					DoctorBean doc = new DoctorServiceImpl().findById(null);
+					session.setAttribute("user", temp);
+//					session.setAttribute("userd", arg1);
 				}
 				DispatcherServlet.send(request, response);
 			} catch (Exception e) {	}

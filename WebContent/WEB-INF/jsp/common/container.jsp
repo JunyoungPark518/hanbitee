@@ -5,7 +5,7 @@
 				<table style="margin: 0 auto;">
 					<tr>
 						<td>
-							<a class="login_main" href="${context}/patient.do?action=move&page=registerForm">고객 회원가입</a>&nbsp; 
+							<a class="login_main" href="${context}/patient.do?action=move&page=register">고객 회원가입</a>&nbsp; 
 							<a class="login_main" href="${context}/patient.do?action=move&page=loginForm">고객:로그인</a>&nbsp; 
 							<a class="login_main" href="${context}/patient.do?action=move&page=loginForm">스탭:로그인</a>&nbsp; 
 							<a class="login_main" href="${context}/admin.do?action=move&page=main">관리자 아이디로 로그인</a>

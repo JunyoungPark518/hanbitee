@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="container" class="con_setting" style="position: relative; top:150px">
-	<a href="${context}/patient.do?action=logout&page=main">로그아웃</a>
 	<div style=""></div>
 	<div class="wtac" style="margin-top: 150px">
 		<table class="index_nboard">
@@ -26,6 +25,4 @@
 			</tr>
 		</table>
 	</div>
-	<form action=""></form>
-	<a href="${context}/board.do?action=move&page=articleList">게시판으로 이동하기</a>
 </div>

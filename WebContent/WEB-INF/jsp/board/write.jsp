@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="../../css/hanbit.css" />
 <meta charset="UTF-8">
-<title>회원 가입 페이지</title>
+<title>게시글</title>
 </head>
 <body>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
@@ -20,7 +20,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="index_gnbtab">
+			<div style="background-color: #51b6e1;">
 			<ul class="index_gnb">
 				<li>
 					<div class="index_gnb_dropdown">
@@ -103,27 +103,37 @@
 		<div style="height: 150px;"></div>
 		<div id="container">
 		<!-- 여기까지 코드 복사&붙여넣기 -->
-		<div style="width: 100%;">
-		<table class="reg_intro">
-			<tr>
-				<th colspan="2"><span class="reg_introtext">회원 가입</span></th>
-			</tr>
-			<tr>
-				<td class="reg_inactive"><span>STEP 01</span><br/><b style="font-size: 16px;">약관 / 정보입력</b></td>
-				<td class="reg_active"><span>STEP 02</span><br/><b style="font-size: 16px;">가입완료</b></td>
-			</tr>
-		</table>
-		<div style="margin-top: 20px;"></div>
 		<div>
-			<table class="reg_confirmtb">
+			<table class="bbs_one">
 				<tr>
-					<td><span id="" class="reg_name">박준용</span><span class="reg_nameadd">님 환영합니다!</span><br/>
-					<span>서비스 이용을 위하여 E-mail 인증이 필요합니다.<br/>작성하신 E-Mail(ID)로 발송된 인증메일의<br/>확인 버튼을 눌러주시면 가입이 완료됩니다.</span>
+				<td style="width:40px">제목</td>
+					<td><input type="text" name="title" style="width:160px"></td>
+					<td style="width:200px"><b style="margin-left: 1px solid black;">자유 게시판</b></td>
+				</tr>
+				<tr>
+					<td colspan="2">작성자: </td>
+					<td>주소부분</td>
+				</tr>
+				<tr>
+					<td colspan="3"><span style="margin-top:10px; margin-bottom:10px">
+					<input type="text" name="content" style="height: 300px; width: 600px"/>
+					</span></td>
+				</tr>
+			</table>
+		</div>
+		<div style="margin-top:30px; text-align:right">
+			<table style="width:60%; margin: 0 auto">
+				<tr>
+				<td><a href=""><input  type="submit" name="change" value="등록하기"/></a>
+				<a href=""><input type="button" name="delete" value="다시 쓰기"/></a>
+				</td>
+					<td style="text-align:right; width:400px">
+						<a href="articleList.jsp?"><input type="button" value="뒤로가기"/></a>
 					</td>
 				</tr>
 			</table>
 		</div>
-		</div>
+		<!-- 내용물 공간 -->
 		<!-- 여기까지 코드 복사&붙여넣기 -->
 		</div>
 		<div style="height: 200px;"></div>

@@ -1,7 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="serviceImpl.PatientServiceImpl" %>
-<%@ page import="service.PatientService" %>
-<%@ page import="domain.PatientBean" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,12 +7,6 @@
 <title>한빛 병원</title>
 </head>
 <body>
-<% 
-	PatientService service = PatientServiceImpl.getInstance();
-	PatientBean member = new PatientBean();
-	member.setPatID(request.getParameter("id"));
-	member.setPatPass(request.getParameter("pw"));
-%>
 	<div id="wrapper" class="width100" style="height: 80px; border-top: 2px solid darkgray;">
 		<div id="header" class="wtac" style="height: 100px;">
 			<table style="margin: 0 auto; width: 1000px;">
@@ -121,14 +112,14 @@
 							<table>
 								<tr>
 									<td>
-									<% if(service.login(member)) { 
+									<%-- <% if(service.login(member)) { 
 										member = service.findById(member);
 									%>
-									<%= member.getPatName() %> 님 환영합니다. <br /><a href="">내정보</a>
+									<%= member.getPatName() %> 님 환영합니다.  --%><br /><a href="">내정보</a>
 									<a href="patLoginForm.jsp"><input type="button" value="로그아웃"/></a>
-									<% } else { %>
+									<%-- <% } else { %>
 									<h3>회원정보가 일치하지 않습니다. <a href="patLoginForm.jsp">뒤로가기</a></h3>
-									<% } %>
+									<% } %> --%>
 									</td>
 								</tr>
 							</table>

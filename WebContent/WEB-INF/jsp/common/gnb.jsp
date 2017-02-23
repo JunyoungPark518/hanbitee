@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="index_gnbtab">
+<div class="index_gnbtab wtac" style="position: relative; top: 125px">
 <ul class="index_gnb">
 	<li>
 		<div class="index_gnb_dropdown">

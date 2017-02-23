@@ -7,8 +7,8 @@ import domain.PatientBean;
 import enums.Vendor;
 import factory.DatabaseFactory;
 public class PatientDAOImpl implements PatientDAO {
-	public static PatientDAOImpl getInstance() {	return new PatientDAOImpl(); } // Singleton Pattern, parameter가 없다(Overloading)
-	final String prop = "pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job";
+	public static PatientDAOImpl getInstance() { return new PatientDAOImpl(); } // Singleton Pattern, parameter가 없다(Overloading)
+	final String prop = "p.pat_id, p.nur_id, p.doc_id, p.pat_pass, p.pat_name, p.pat_gen, p.pat_jumin, p.pat_addr, p.pat_phone, p.pat_email, p.pat_job, d.doc_name";
 	@Override
 	public int insert(PatientBean member) throws Exception {
 		return DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
@@ -20,11 +20,11 @@ public class PatientDAOImpl implements PatientDAO {
 	public PatientBean selectById(PatientBean member) throws Exception {
 		PatientBean temp = new PatientBean();
 		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-				String.format("SELECT %s FROM Patient WHERE pat_id='%s'",prop, member.getPatID()));
+				String.format("SELECT %s FROM Patient p, Doctor d WHERE pat_id='%s' AND p.doc_id=d.doc_id",prop, member.getPatID()));
 		if(rs.next()) {
 			temp.setPatID(rs.getString("pat_id"));
 			temp.setNurID(rs.getString("nur_id"));
-			temp.setDocID(rs.getString("doc_id"));
+			temp.setDocID(rs.getString("doc_name"));
 			temp.setPatPass(rs.getString("pat_pass"));
 			temp.setPatName(rs.getString("pat_name"));
 			temp.setPatGen(rs.getString("pat_gen"));
