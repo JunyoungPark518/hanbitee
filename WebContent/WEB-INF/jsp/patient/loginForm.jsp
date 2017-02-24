@@ -35,10 +35,6 @@
 					<a class="login_a" href="html/common/findidpw.html">ID/PW 찾기</a></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td style="text-align: right;"><a class="login_a" href="html/admin/check_admin.html">관리자 아이디로 로그인</a></td>
-				<td></td>
-			</tr>
 		</table>
 	</div>
 	<div style="margin-top: 50px;">

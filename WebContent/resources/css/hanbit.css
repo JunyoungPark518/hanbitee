@@ -20,7 +20,7 @@
 
 /* container */
 #container{border:1px solid white; height: 350px;} 
-.con_setting{width: 100%; position: relative; top: 300px;}
+.con_setting{width: 100%;}
 .bbs_table{margin: 0 auto; height: 100%; width: 500px; border-collapse: collapse;}
 .bbs_table tr {height: 40px; text-align: center;}
 .bbs_table th {font-size: 13px; background-color: white; color: black; border-radius: 5px;}
@@ -44,6 +44,7 @@
 .login_input:hover {background-color: #d2d2d2;}
 .login_a {color: #cccccc; font-size: 11px;}
 .login_main {color: #aaaaaa; font-size: 15px;}
+.login_main:hover {cursor:pointer;}
 .login_span {color:#cccccc; font-size:11px;}
 .login_btn {border: 1px solid #cccccc;}
 .login_btn:hover {background-color: #d2d2d2;}

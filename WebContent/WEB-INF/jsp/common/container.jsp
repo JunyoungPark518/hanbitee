@@ -5,8 +5,8 @@
 			<tr>
 				<td>
 					<a id="aRegister" class="login_main">고객 회원가입</a>&nbsp; 
-					<a id="aPatLogin" class="login_main">고객:로그인</a>&nbsp; 
-					<a id="aStaffLogin" class="login_main">스탭:로그인</a>&nbsp; 
+					<a id="aPatLogin" class="login_main">고객 로그인</a>&nbsp; 
+					<a id="aStaffLogin" class="login_main">스탭 로그인</a>&nbsp; 
 					<a id="aAdminLogin" class="login_main">관리자 아이디로 로그인</a>
 					<a id="aBoard" class="login_main">게시판으로 이동</a>&nbsp; 
 					<a id="aFindId" class="login_main">ID/PW 찾기</a>
@@ -84,26 +84,25 @@
 	</div>
 </div>
 <script>
-	function goPage() {
-		$('#aRegister').click(function() {
-			alert('jQuery Test');
-			location.href = "${context}/patient.do?action=move&page=register";
-		}); 
-		$('#aPatLogin').click(function() {
-			location.href = "${context}/patient.do?action=move&page=loginForm";
-		});
-		document.getElementById('aStaffLogin').onclick=function() {
-			location.href = "${context}/patient.do?action=move&page=loginForm";
-		}
-		document.getElementById('aAdminLogin').onclick=function() {
-			location.href = "${context}/admin.do?action=move&page=main";
-		}
-		document.getElementById('aBoard').onclick=function() {
-			location.href = "${context}/board.do?action=move&page=main";
-		}
-		document.getElementById('aFindId').addEventHandler('click',function() {
-			location.href = "${context}/util.do?action=move&page=findId";
-		});
+$(function() {
+	$('#aRegister').click(function() {
+		alert('jQuery Test');
+		location.href = "${context}/patient.do?action=move&page=register";
+	}); 
+	$('#aPatLogin').click(function() {
+		location.href = "${context}/patient.do?action=move&page=loginForm";
+	});
+	document.getElementById('aStaffLogin').onclick=function() {
+		location.href = "${context}/patient.do?action=move&page=loginForm";
 	}
-	window.onload = goPage();
+	document.getElementById('aAdminLogin').onclick=function() {
+		location.href = "${context}/admin.do?action=move&page=main";
+	}
+	document.getElementById('aBoard').onclick=function() {
+		location.href = "${context}/board.do?action=move&page=main";
+	}
+	document.getElementById('aFindId').addEventHandler('click',function() {
+		location.href = "${context}/util.do?action=move&page=findId";
+	});
+});
 </script>
