@@ -8,17 +8,17 @@
 			<tr>
 				<td>
 				<div>
-				<form action="${context}/patient.do" method="post">
-				<table class="login_table">
-					<tr>
-						<td><input type="text" name="id" placeholder="아이디" class="login_input" style="border-bottom: 1px solid #cccccc;" /></td>
-						<td rowspan="2" class="login_btn">
-						<input type="submit" value="로그인" class="login_input" style="width: 60px; height: 40px;" /></td>
-					</tr>
-					<tr>
-						<td><input type="password" name="pw" placeholder="비밀번호"	class="login_input" /></td>
-					</tr>
-				</table>
+				<form id="loginForm">
+					<table class="login_table">
+						<tr>
+							<td><input type="text" name="id" placeholder="아이디" class="login_input" style="border-bottom: 1px solid #cccccc;" /></td>
+							<td rowspan="2" class="login_btn">
+							<input type="submit" value="로그인" class="login_input" style="width: 60px; height: 40px;" /></td>
+						</tr>
+						<tr>
+							<td><input type="password" name="pw" placeholder="비밀번호"	class="login_input" /></td>
+						</tr>
+					</table>
 				<input type="hidden" name="page" value="main"/>
 				<input type="hidden" name="action" value="login"/>
 				</form>
@@ -31,8 +31,8 @@
 			<tr>
 				<td><input type="checkbox" name="saveid" value="save">
 					<span class="login_span">로그인 상태 유지</span>&nbsp;&nbsp;&nbsp; 
-					<a class="login_a" href="html/common/register.html">회원가입</a>&nbsp; 
-					<a class="login_a" href="html/common/findidpw.html">ID/PW 찾기</a></td>
+					<a class="login_a" href="${context}/patient.do?action=move&page=register">회원가입</a>&nbsp; 
+					<a class="login_a" href="${context}/patient.do?action=move&page=register">ID/PW 찾기</a></td>
 				<td></td>
 			</tr>
 		</table>
@@ -151,3 +151,23 @@
 	</div>
 </div>
 <jsp:include page="../common/footer.jsp"/>
+<script>
+$(function() {
+	var loginForm = $('#loginForm');
+	var tab = loginForm.find('table');
+	$('#loginForm input[type=submit]').click(function() {
+		loginForm.attr('action','${context}/patient.do');
+		loginForm.attr('method','post');
+		var idVal = tab.find('input[name=id]').val();
+		var pwVal = tab.find('input[name=pw]').val();
+		if(idVal=='' || pwVal=='') {
+			alert('아이디 및 비밀번호를 입력해주세요.');
+		} else {
+			alert('로그인하기 위해 입력한 ID 값: '+idVal + '\n비밀번호:' + pwVal);
+			loginForm.submit();
+		}
+	});
+/* 	loginForm.find('input[type=submit]').submit(function(){
+	}); */
+});
+</script>

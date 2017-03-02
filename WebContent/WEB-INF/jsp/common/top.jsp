@@ -3,6 +3,7 @@
 <html>
 <head>
 <script src="${js}/jquery-3.1.1.js"></script>
+<script src="${js}/hospital.js"></script>
 <link rel="stylesheet" type="text/css" href="${css}/hanbit.css" />
 <meta charset="UTF-8">
 <title>한빛 병원</title>
