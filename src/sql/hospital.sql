@@ -82,7 +82,7 @@ CREATE TABLE Article(
 );
 -- dummy 입력 부분
 -- doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position
--- SELECT * FROM Doctors;
+-- SELECT * FROM Doctor;
 INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position) VALUES ('dlee', '1', '소아과', '이태정', 'M', '010-333-1340', 'ltj@hanbh.com', '과장');
 INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position) VALUES ('dahn', '1', '내과', '안성기', 'M', '011-222-0987', 'ask@hanbh.com', '과장');
 INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position) VALUES ('dkim', '1', '외과', '김민종', 'M', '010-333-8743', 'kmj@hanbh.com', '과장');
@@ -95,7 +95,7 @@ INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, 
 INSERT INTO Doctor(doc_id, doc_pass, major_treat, doc_name, doc_gen, doc_phone, doc_email, doc_position) VALUES ('dkim3', '1', '외과', '김병만', 'M', '010-555-3542', 'kbm@hanbh.com', '전문의');
 
 -- nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur_email, nur_position
--- SELECT * FROM  Nurses;
+-- SELECT * FROM  Nurse;
 INSERT INTO Nurse(nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur_email, nur_position) VALUES ('nkim',  '1', '소아과', '김은영', 'F', '010-555-8751', 'key@hanbh.com', '수간호사');
 INSERT INTO Nurse(nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur_email, nur_position) VALUES ('nyoon', '1', '내과', '윤성애', 'F', '016-333-8745', 'ysa@hanbh.com', '수간호사');
 INSERT INTO Nurse(nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur_email, nur_position) VALUES ('nshin', '1', '피부과', '신지원', 'M', '010-666-7646', 'sjw@hanbh.com', '주임');
@@ -108,7 +108,7 @@ INSERT INTO Nurse(nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur
 INSERT INTO Nurse(nur_id, nur_pass, major_job, nur_name, nur_gen, nur_phone, nur_email, nur_position) VALUES ('nlee2', '1', '외과', '이서연', 'F', '010-222-3214', 'lsy2@hanbh.com', '간호사');
 
 -- pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job
--- SELECT * FROM Patients;
+-- SELECT * FROM Patient;
 INSERT INTO Patient(pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job) VALUES ('pahn',   'nkim',   'dlee',   '1', '안상건', 'M', '232345', '서울', '010-555-7845', 'ask@ab.com', '회사원');
 INSERT INTO Patient(pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job) VALUES ('pkim',   'nyoon',  'dahn',   '1', '김성룡', 'M', '543545', '서울', '010-333-7812', 'ksr@bb.com', '자영업');
 INSERT INTO Patient(pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job) VALUES ('plee',   'nshin',  'dkim',   '1', '이종진', 'M', '433424', '부산', '019-888-4859', 'ljj@ab.com', '회사원');
@@ -121,7 +121,7 @@ INSERT INTO Patient(pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jum
 INSERT INTO Patient(pat_id, nur_id, doc_id, pat_pass, pat_name, pat_gen, pat_jumin, pat_addr, pat_phone, pat_email, pat_job) VALUES ('psong',  'nlee2',  'dkim3',  '1', '송성묵', 'M', '987643', '서울', '010-222-5874', 'ssm@bb.com', '학생');
 
 -- treat_id, pat_id, doc_id, treat_contents, treat_date
--- SELECT * FROM Treatments;
+-- SELECT * FROM Treatment;
 INSERT INTO Treatment(treat_id, pat_id, doc_id, treat_contents, treat_date) VALUES ('130516023', 'pahn',  'dlee',  '감기, 몸살', '2013-05-16');
 INSERT INTO Treatment(treat_id, pat_id, doc_id, treat_contents, treat_date) VALUES ('130628100', 'pkim',  'dahn',  '피부 트러블 치료', '2013-06-28');
 INSERT INTO Treatment(treat_id, pat_id, doc_id, treat_contents, treat_date) VALUES ('131205056', 'plee',  'dkim',  '목 디스크로 MRI 촬영', '2013-12-05');
@@ -134,7 +134,7 @@ INSERT INTO Treatment(treat_id, pat_id, doc_id, treat_contents, treat_date) VALU
 INSERT INTO Treatment(treat_id, pat_id, doc_id, treat_contents, treat_date) VALUES ('140308087', 'psong', 'dkim3', '장염', '2014-03-08');
 
 -- chart_id, treat_id, doc_id, nur_id, pat_id, chartContent
--- SELECT * FROM Charts;
+-- SELECT * FROM Chart;
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('p_130516023', '130516023', 'dlee', 'nkim',  'pahn',  '감기 주사 및 약 처방' );
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('d_130628100', '130628100', 'dahn',  'nyoon',  'pkim',   '피부 감염 방지 주사' );
 INSERT INTO Chart(chart_id, treat_id, doc_id, nur_id, pat_id, chart_contents) VALUES ('r_131205056', '131205056', 'dkim',  'nshin',  'plee',   '주사 처방' );

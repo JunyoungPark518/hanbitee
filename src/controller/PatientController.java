@@ -24,7 +24,7 @@ public class PatientController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	PatientService service;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		PatientBean bean = new PatientBean();
@@ -82,11 +82,6 @@ public class PatientController extends HttpServlet {
 		default:
 			break;
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }

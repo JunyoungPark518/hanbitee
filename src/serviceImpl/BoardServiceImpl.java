@@ -48,12 +48,12 @@ public class BoardServiceImpl implements BoardService {
 		for (ArticleBean a : list) {
 			if(param.getSeq().equals(a.getSeq())) {
 				if(param.getTitle()==null) {
-					param.setTitle("blank");
+					param.setTitle("제목을 입력하세요");
 				}
 				param.setTitle(!param.getTitle().equals(a.getTitle()) ? param.getTitle() : a.getTitle());
 				
 				if(param.getContent()==null){
-					param.setContent("blank");
+					param.setContent("내용을 입력하세요");
 				}
 				param.setContent(!param.getContent().equals(a.getContent()) ? param.getContent() : a.getContent());
 				param.setId(a.getId());

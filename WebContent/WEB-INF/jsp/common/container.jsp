@@ -89,7 +89,6 @@ $(function() {
 	var menu = $('#menu');
 	var context = '${context}/';
 	menu.find('a:nth-child(1)').click(function() {
-		alert('jQuery Test');
 		goPage(context + 'patient.do','move','register'); 
 	});
 	menu.find('a:nth-child(2)').click(function() {
@@ -102,7 +101,7 @@ $(function() {
 		goPage(context + 'admin.do', 'move', 'main');
 	});
 	menu.find('a:nth-child(5)').click(function() {
-		goPage(context + 'board.do', 'move', 'articleList');
+		goPage(context + 'board.do', 'list', 'articleList');
 	});
 	menu.find('a:nth-child(6)').click(function() {
 		goPage(context + 'util.do', 'move', 'findId');

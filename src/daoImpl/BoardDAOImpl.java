@@ -16,7 +16,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public int insert(ArticleBean article) throws Exception {
 		return  DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeUpdate(
 				String.format(
-						"INSERT INTO Article(art_seq, id, title, content, regdate, read_count) "
+						"INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) "
 						+ "VALUES (art_seq.nextval, '%s','%s','%s','%s','%s')", 
 						article.getId(), article.getTitle(), article.getContent(), article.getRegdate(), article.getReadCount()
 				));
@@ -29,7 +29,7 @@ public class BoardDAOImpl implements BoardDAO {
 				String.format("SELECT * FROM Article WHERE art_seq='%d'", Integer.parseInt(article.getSeq())));
 		if(rs.next()) {
 			temp.setSeq(rs.getString("art_seq"));
-			temp.setId(rs.getString("id"));
+			temp.setId(rs.getString("pat_id"));
 			temp.setTitle(rs.getString("title"));
 			temp.setContent(rs.getString("content"));
 			temp.setRegdate(rs.getString("regdate"));
@@ -44,7 +44,7 @@ public class BoardDAOImpl implements BoardDAO {
 		ResultSet rs = null;
 		if(article.getId()!=null) {
 			rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
-					String.format("SELECT * FROM Article WHERE id like '%s'", 
+					String.format("SELECT * FROM Article WHERE pat_id like '%s'", 
 							"%" + article.getId() + "%"));
 		} else if(article.getTitle()!=null) {
 			rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(
@@ -63,7 +63,7 @@ public class BoardDAOImpl implements BoardDAO {
 		while(rs.next()) {
 			ArticleBean temp = new ArticleBean();
 			temp.setSeq(rs.getString("art_seq"));
-			temp.setId(rs.getString("id"));
+			temp.setId(rs.getString("pat_id"));
 			temp.setTitle(rs.getString("title"));
 			temp.setContent(rs.getString("content"));
 			temp.setRegdate(rs.getString("regdate"));
@@ -80,7 +80,7 @@ public class BoardDAOImpl implements BoardDAO {
 		while(rs.next()) {
 				ArticleBean temp = new ArticleBean();
 				temp.setSeq(rs.getString("art_seq"));
-				temp.setId(rs.getString("id"));
+				temp.setId(rs.getString("pat_id"));
 				temp.setTitle(rs.getString("title"));
 				temp.setContent(rs.getString("content"));
 				temp.setRegdate(rs.getString("regdate"));

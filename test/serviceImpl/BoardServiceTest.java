@@ -26,7 +26,7 @@ public class BoardServiceTest {
 	public void testFindOne() throws Exception {
 		ArticleBean bean = new ArticleBean();
 		bean.setSeq("1");
-		assertTrue(service.findOne(bean).getId().equals("babungv"));
+		assertTrue(service.findOne(bean).getId().equals("pkim"));
 	}
 
 	@Test @Ignore
