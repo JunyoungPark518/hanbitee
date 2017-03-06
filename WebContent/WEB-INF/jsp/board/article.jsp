@@ -41,7 +41,7 @@
 					<td><a href="${context}/board.do?action=detail&page=articleChange&seq=${requestScope.art.seq}"><input type="button" value="게시글 수정"/></a>
 					<input type="button" value="게시글 삭제"/></td>
 					<td>
-						<a href="${context}/board.do?action=list&page=articleList"><input type="button" value="목록으로"/></a>
+						<a href="${context}/board.do?action=list&page=articleList&pageNo=1"><input type="button" value="목록으로"/></a>
 					</td>
 				</tr>
 			</table>

@@ -101,7 +101,9 @@ $(function() {
 		goPage(context + 'admin.do', 'move', 'main');
 	});
 	menu.find('a:nth-child(5)').click(function() {
-		goPage(context + 'board.do', 'list', 'articleList');
+		/* goList(context + 'board.do', 'list', 'articleList', '1'); */
+		/* goBoardPage('1'); */
+		location.href = 'board.do?action=list&page=articleList&pageNo=1';
 	});
 	menu.find('a:nth-child(6)').click(function() {
 		goPage(context + 'util.do', 'move', 'findId');

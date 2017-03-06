@@ -43,9 +43,10 @@ INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES
 INSERT INTO Article(art_seq, pat_id, title, content, regdate, read_count) VALUES (art_seq.nextval, 'psong',  'Fifth2','MY FIFTH ARTICLE2','2017-02-19 03:00:00','2');
 
 
-
 -- READ ALL
 SELECT * FROM Article;
+
+SELECT t2.* FROM (SELECT ROWNUM seq,t.* FROM (SELECT * FROM Article ORDER BY art_seq DESC) t) t2 WHERE t2.seq BETWEEN 6 AND 10;
 
 -- READ SOME
 SELECT * FROM Article WHERE pat_id='babungv' OR title like '%Sec%';

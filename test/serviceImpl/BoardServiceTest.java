@@ -39,7 +39,7 @@ public class BoardServiceTest {
 
 	@Test @Ignore
 	public void testList() throws Exception {
-		List<ArticleBean> list = service.list();
+		List<ArticleBean> list = service.list(null);
 		assertTrue(!list.equals(null));
 	}
 

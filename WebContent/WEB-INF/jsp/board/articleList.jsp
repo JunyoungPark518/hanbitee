@@ -30,27 +30,46 @@
 				<td colspan="5">
 				<c:forEach var="pageNo" items="${requestScope.block}">
 					<span style="font-size: 15px"><a href="articleList.jsp?">${pageNo}</a></span>&nbsp;&nbsp;&nbsp;
-				
 				</c:forEach> 
 				</td>
 			</tr> --%>
 		</table>
-		<%-- <nav style="margin: 0 auto; background: gray;">
-		<ul>
-			<c:forEach var="pageNo" items="${requestScope.block}">
-				<li>
-					<span style="font-size: 15px"><a href="articleList.jsp?">${pageNo}</a></span>&nbsp;&nbsp;&nbsp;
-				</li>
+		<div class="wtac">
+		<table class="bbs_page" style="margin: 0 auto;">
+			<tr>
+			<td>
+			<c:if test="${requestScope.prevBlock gt 0}">
+				<a href="${context}/board.do?action=list&page=articleList&pageNo=${requestScope.prevBlock}">◀PREV</a>
+			</c:if>
+			<c:forEach varStatus="i" begin="${requestScope.blockStart}" end="${requestScope.blockEnd}" step="1">
+				
+				<c:choose>
+					<c:when test="${i.index eq pageNo}">
+						<a href="#"><font style="color:white; font-size: 12px; padding: 2px; background-color: #444444">${i.index}</font></a>
+					</c:when>
+					<c:otherwise>
+						<span style="font-size: 15px"><a href="${context}/board.do?action=list&page=articleList&pageNo=${i.index}">${i.index}</a></span>
+					</c:otherwise>
+				</c:choose>
+				
 			</c:forEach> 
-		</ul>
-		</nav> --%>
+			<c:if test="${requestScope.nextBlock le pageCount}">
+				<a href="${context}/board.do?action=list&page=articleList&pageNo=${requestScope.nextBlock}">NEXT▶</a>
+			</c:if>
+			</td>
+			</tr>
+		</table>
+		</div>
+		<div>
+			이전블록-시작페이지 ${blockStart}, 다음블록-시작페이지 ${nextBlock}
+		</div>
 	</div>
 	<div>
 		<form action="">
 			<table style="width:800px; margin: 0 auto">
 			<tr>
 				<td style="text-align:left; width:100px">
-				<a href="articleWrite.jsp"><input type="button" value="글 작성"/>
+				<a href="${context}/board.do?action=write&page=write"><input type="button" value="글 작성"/>
 				</a>
 				</td>
 				<td style="text-align:right; width:300px">

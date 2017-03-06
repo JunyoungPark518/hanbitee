@@ -1,15 +1,15 @@
-package domain;
+package command;
 
-import handler.CommandHandler;
 import lombok.*;
 
 @Data
-public class Command implements CommandHandler {
+public class Command {
 	@Getter @Setter
-	private String directory, action, page;
+	protected String directory, action, page, pageNo, searchWord;
 	@Getter
-	private String view;
+	protected String view;
 	
+	public Command() {}
 	public Command(String directory, String action, String page) {
 		this.directory = directory;
 		this.action = action;
@@ -17,12 +17,8 @@ public class Command implements CommandHandler {
 		this.setView();
 	}
 	
-	@Override
-	public Command process() {
-		return null;
-	}
-	
 	public void setView() {
 		this.view = (this.directory.equals("home")) ? "/WEB-INF/jsp/common/" + this.page + ".jsp" :"/WEB-INF/jsp/" + this.directory + "/" + this.page + ".jsp";
 	}
+	
 }

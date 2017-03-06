@@ -28,6 +28,8 @@
 .bbs_table tr td{border-left: 1px solid #888888; border-right: 1px solid #888888;}
 .bbs_one {margin: 0 auto; height: 100%; width: 600px; border-collapse: collapse;}
 .bbs_one tr td {border-bottom: 1px solid black; text-align: center; height: 40px; text-align: left}
+.bbs_page{margin: 0 auto;}
+.bbs_page tr td a:hover{padding: 5px; background-color: yellow;}
 
 .ck_ad{background-color: white; color: #555555;}
 .detail_back{margin: 0 auto; text-align: right; width: 400px; color: green; text-decoration: none; background-color: white}

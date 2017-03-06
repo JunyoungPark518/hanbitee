@@ -1,6 +1,7 @@
 package serviceImpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -18,7 +19,7 @@ public class BoardServiceImpl implements BoardService {
 	Iterator<ArticleBean> it;
 	
 	public BoardServiceImpl() {
-		try { list = BoardDAOImpl.getInstance().selectAll(); } catch (Exception e) {}
+		list = new ArrayList<ArticleBean>();
 		it = list.iterator();
 		dao = BoardDAOImpl.getInstance();
 	}
@@ -39,8 +40,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<ArticleBean> list() throws Exception {
-		return BoardDAOImpl.getInstance().selectAll();
+	public List<ArticleBean> list(int[] pageArr) throws Exception {
+		return BoardDAOImpl.getInstance().selectAll(pageArr);
 	}
 
 	@Override

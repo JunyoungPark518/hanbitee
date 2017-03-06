@@ -10,7 +10,7 @@ public interface BoardService {
 	// READ: SELECT
 	public ArticleBean findOne(ArticleBean param) throws Exception;
 	public List<ArticleBean> findSome(ArticleBean param) throws Exception;
-	public List<ArticleBean> list() throws Exception;
+	public List<ArticleBean> list(int[] pageArr) throws Exception;
 	public int count() throws Exception;
 	// UPDATE
 	public int update(ArticleBean param) throws Exception;

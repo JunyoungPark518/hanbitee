@@ -74,9 +74,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public List<ArticleBean> selectAll() throws Exception {
+	public List<ArticleBean> selectAll(int[] pageArr) throws Exception {
 		List<ArticleBean> list = new ArrayList<ArticleBean>();
-		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery("SELECT * FROM Article");
+		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(String.format("SELECT t2.* FROM (SELECT ROWNUM seq,t.* FROM (SELECT * FROM Article ORDER BY art_seq DESC) t) t2 WHERE t2.seq BETWEEN %s AND %s", pageArr[0], pageArr[1]));
 		while(rs.next()) {
 				ArticleBean temp = new ArticleBean();
 				temp.setSeq(rs.getString("art_seq"));
