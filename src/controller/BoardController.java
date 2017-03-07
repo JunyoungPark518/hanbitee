@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.*;
 import util.DispatcherServlet;
+import util.Pagination;
 import util.Separator;
 import serviceImpl.BoardServiceImpl;
 import domain.ArticleBean;
+import handler.PageHandler;
 
 @WebServlet("/board.do")
 public class BoardController extends HttpServlet {
@@ -22,35 +24,22 @@ public class BoardController extends HttpServlet {
 		Separator.init(request, response);
 		ArticleBean bean = new ArticleBean();
 		List<ArticleBean> list = new ArrayList<>();
+		Map<String, String> params = new HashMap<>();
+		PageHandler handler = new PageHandler();
 		switch (Separator.command.getAction()) {
 		case "move":
 			break;
 		case "list":
-			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
-			int count = 0, rowCount = 5, blockSize = 5;
-			int pageStart = (pageNo-1)*rowCount+1;
-			int pageEnd = pageNo*rowCount;
-			int[] pageArr = {pageStart,pageEnd};
-			try {
-				list = service.list(pageArr);
-				count = service.count();
-			} catch (Exception e1) {}
-			int pageCount = (count%rowCount==0) ? count/rowCount : count/rowCount + 1;
-			int blockStart = pageNo-((pageNo-1)%blockSize);
-			int prevBlock = blockStart - blockSize;
-			int nextBlock = blockStart + blockSize;
-			int blockEnd = (blockStart+rowCount-1 < pageCount) ? blockStart+blockSize-1 : pageCount;
-			request.setAttribute("count", count);
-			request.setAttribute("pageCount", pageCount);
+			params.put("pageNo", request.getParameter("pageNo"));
+			params.put("count", String.valueOf(service.count()));
+			handler.process(params);
+			int[] pageArr = {handler.getAttr()[3], handler.getAttr()[4]};
+			list = service.list(pageArr);
+			String[] arr = {"count", "pageCount", "pageNo", "pageStart", "pageEnd", "blockStart", "blockEnd", "prevBlock", "nextBlock"};
+			for(int i=0; i<9; i++) {
+				request.setAttribute(arr[i], handler.getAttr()[i]);
+			}
 			request.setAttribute("list", list);
-			request.setAttribute("pageStart", pageStart);
-			request.setAttribute("pageEnd", pageEnd);
-			request.setAttribute("blockStart", blockStart);
-			request.setAttribute("blockEnd", blockEnd);
-			request.setAttribute("prevBlock", prevBlock);
-			request.setAttribute("nextBlock", nextBlock);
-			request.setAttribute("pageNo", pageNo);
-			System.out.println("blockEnd"+blockEnd);
 			break;
 		case "detail":
 			bean.setSeq(request.getParameter("seq"));

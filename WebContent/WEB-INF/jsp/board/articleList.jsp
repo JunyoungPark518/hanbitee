@@ -34,8 +34,8 @@
 				</td>
 			</tr> --%>
 		</table>
-		<div class="wtac">
-		<table class="bbs_page" style="margin: 0 auto;">
+		<div id="pagination">
+		<table id="tab_page">
 			<tr>
 			<td>
 			<c:if test="${requestScope.prevBlock gt 0}">
@@ -45,10 +45,10 @@
 				
 				<c:choose>
 					<c:when test="${i.index eq pageNo}">
-						<a href="#"><font style="color:white; font-size: 12px; padding: 2px; background-color: #444444">${i.index}</font></a>
+						<a href="#"><font>${i.index}</font></a>
 					</c:when>
 					<c:otherwise>
-						<span style="font-size: 15px"><a href="${context}/board.do?action=list&page=articleList&pageNo=${i.index}">${i.index}</a></span>
+						<span><a href="${context}/board.do?action=list&page=articleList&pageNo=${i.index}">${i.index}</a></span>
 					</c:otherwise>
 				</c:choose>
 				
@@ -59,9 +59,6 @@
 			</td>
 			</tr>
 		</table>
-		</div>
-		<div>
-			이전블록-시작페이지 ${blockStart}, 다음블록-시작페이지 ${nextBlock}
 		</div>
 	</div>
 	<div>
@@ -102,6 +99,12 @@ $(function(){
 	tab.find('tr:nth-child(2)').find('th:nth-child(3)').css('width','100px');
 	tab.find('tr:nth-child(2)').find('th:nth-child(4)').css('width','100px');
 	tab.find('tr:nth-child(2)').find('th:nth-child(5)').css('width','50px');
+	var page = $('pagination');
+	page.addClass('wtac');
+	var tbpage = $('#tab_page')
+	tbpage.addClass('bbs_page').css('margin','0 auto');
+	tbpage.find('font').css('color','white').css('font-size','12px').css('padding','2px').css('background-color','#444444');
+	tbpage.find('span').css('font-size','15px');
 	$('#link').click(function() {
 		goPage(context + 'board.do', 'detail', 'article');
 		alert('이동');

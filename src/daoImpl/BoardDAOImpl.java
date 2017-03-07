@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import constants.Database;
@@ -74,10 +75,11 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public List<ArticleBean> selectAll(int[] pageArr) throws Exception {
+	public List<ArticleBean> selectAll(int[] pageArr) {
 		List<ArticleBean> list = new ArrayList<ArticleBean>();
-		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(String.format("SELECT t2.* FROM (SELECT ROWNUM seq,t.* FROM (SELECT * FROM Article ORDER BY art_seq DESC) t) t2 WHERE t2.seq BETWEEN %s AND %s", pageArr[0], pageArr[1]));
-		while(rs.next()) {
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery(String.format("SELECT t2.* FROM (SELECT ROWNUM seq,t.* FROM (SELECT * FROM Article ORDER BY art_seq DESC) t) t2 WHERE t2.seq BETWEEN %s AND %s", pageArr[0], pageArr[1]));
+			while(rs.next()) {
 				ArticleBean temp = new ArticleBean();
 				temp.setSeq(rs.getString("art_seq"));
 				temp.setId(rs.getString("pat_id"));
@@ -86,6 +88,9 @@ public class BoardDAOImpl implements BoardDAO {
 				temp.setRegdate(rs.getString("regdate"));
 				temp.setReadCount(rs.getString("read_count"));
 				list.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return list;
 	}
@@ -112,10 +117,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int count() throws Exception {
-		ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery("SELECT COUNT(*) AS COUNT FROM Article");
-		if(rs.next()) {
-			return Integer.parseInt(rs.getString("COUNT"));
+	public int count(){
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, Database.USERNAME, Database.PASSWORD).getConnection().createStatement().executeQuery("SELECT COUNT(*) AS COUNT FROM Article");
+			if(rs.next()) {
+				return Integer.parseInt(rs.getString("COUNT"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return 0;
 	}
